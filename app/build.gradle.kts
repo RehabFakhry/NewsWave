@@ -1,69 +1,74 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.ANDROID_APPLICATION)
+    kotlin(Plugins.KOTLIN_ANDROID)
+    kotlin(Plugins.KOTLIN_KAPT)
+    id(Plugins.HILT_LIBRARY)
 }
 
 android {
     namespace = "com.the_chance.newswave"
-    compileSdk = 33
+    compileSdk = ConfigData.COMPILE_SDK_VERSION
 
     defaultConfig {
         applicationId = "com.the_chance.newswave"
-        minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = ConfigData.MIN_SDK_VERSION
+        targetSdk = ConfigData.TARGET_SDK_VERSION
+        versionCode = ConfigData.VERSION_CODE
+        versionName = ConfigData.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = ConfigData.TEST_INSTRUMENTATION_RUNNER
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        getByName(BuildType.RELEASE) {
+            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ConfigData.JAVA_VERSIONS_CODE
+        targetCompatibility = ConfigData.JAVA_VERSIONS_CODE
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ConfigData.JAVA_VERSIONS_CODE.toString()
     }
     buildFeatures {
         compose = true
     }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+//    }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+//            excludes += "META-INF/gradle/incremental.annotation.processors"
+
         }
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation(project(BuildModules.DOMAIN))
+    implementation(project(BuildModules.DATA))
+
+    Dependencies.uiDependencies.forEach { implementation(it) }
+    Dependencies.retrofitDependencies.forEach { implementation(it) }
+    Dependencies.composeDependency.forEach { implementation(it) }
+    implementation(platform(Dependencies.composePlatformBom))
     implementation("androidx.compose.material3:material3")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(platform(Dependencies.composePlatformBomAndroidTest))
+    Dependencies.androidTestDependencies.forEach { androidTestImplementation(it) }
+    debugImplementation(Dependencies.composeUiDependency)
+    Dependencies.debugmplementation.forEach { debugImplementation(it)}
+        kapt(Dependencies.hiltCompiler)
+//    implementation(Dependencies.hiltCompiler)
+    implementation(Dependencies.hiltDependency)
 }

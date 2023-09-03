@@ -1,43 +1,60 @@
+import java.util.Properties
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.ANDROID_LIBRARY)
+    id(Plugins.HILT_LIBRARY)
+    id(Plugins.SERIALIZATION)
+    kotlin(Plugins.KOTLIN_ANDROID)
+    kotlin(Plugins.KOTLIN_KAPT)
 }
+
+val localProps = Properties()
+val localPropsFile = localProps.load(project.rootProject.file("local.properties").inputStream())
 
 android {
     namespace = "com.the_chance.data"
-    compileSdk = 33
+    compileSdk = ConfigData.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdk = 24
+        minSdk = ConfigData.MIN_SDK_VERSION
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", localProps.getProperty("API_KEY"))
+
+        testInstrumentationRunner = ConfigData.TEST_INSTRUMENTATION_RUNNER
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        getByName(BuildType.RELEASE){
+            isMinifyEnabled =BuildTypeRelease.isMinifyEnabled
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ConfigData.JAVA_VERSIONS_CODE
+        targetCompatibility = ConfigData.JAVA_VERSIONS_CODE
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ConfigData.JAVA_VERSIONS_CODE.toString()
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(project(BuildModules.DOMAIN))
+    Dependencies.uiDependencies.forEach { implementation(it) }
+    testImplementation(Dependencies.junitDependency)
+//    Dependencies.androidTestDependencies.forEach { androidTestImplementation(it) }
+    //retrofit
+    Dependencies.retrofitDependencies.forEach { implementation(it) }
+    //Coroutine
+    implementation(Dependencies.coroutinesDependency)
+    //Hilt
+    implementation(Dependencies.hiltDependency)
+    kapt(Dependencies.hiltCompiler)
+//    implementation(Dependencies.hiltCompiler)
+    implementation(Dependencies.daggerAndroid)
 }
