@@ -1,7 +1,9 @@
 package com.the_chance.newswave.ui.theme
 
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 data class Dimens(
     val zero: Dp = 0.dp,
@@ -22,29 +24,34 @@ data class Dimens(
     val space56: Dp = 56.dp,
     val space64: Dp = 46.dp,
 
-    val fontSizeHeading: Dp = 24.dp,
-    val fontSizeSecondary: Dp = 12.dp,
-    val fontSizeSubtitle: Dp = 24.dp,
-    val fontSizeBody1: Dp = 18.dp,
-    val fontSizeBody2: Dp = 16.dp,
-    val fontSizeCaption: Dp = 14.dp,
+    val fontSize24: TextUnit = 24.sp,
+    val fontSize12: TextUnit = 12.sp,
+    val fontSize30: TextUnit = 30.sp,
+    val fontSize20: TextUnit = 20.sp,
+    val fontSize16: TextUnit = 16.sp,
+    val fontSize14: TextUnit = 14.sp,
 
     val strokeNormal: Dp = 1.dp,
 
     val lottieLoading: Dp = 100.dp,
-    val addToCartLottieLoading: Dp = 50.dp,
-    val itemProductImage: Dp = 88.dp,
+    val itemCardImage: Dp = 88.dp,
 
 
     val smallButton: Dp = 32.dp,
     val heightPrimaryButton: Dp = 48.dp,
     val heightOutlinedTextField: Dp = 64.dp,
 
-    val icon16: Dp = 16.dp,
-    val icon24: Dp = 24.dp,
-    val icon32: Dp = 32.dp,
-    val icon48: Dp = 48.dp,
-    val heightItemMarketCard: Dp = 164.dp,
-    val heightItem: Dp = 192.dp,
     val card: Dp = 120.dp,
+
+    //region Text Size Dimensions
+//    val textSize0: TextUnit = 0.sp,
+//    val textSize12 = 12.sp,
+//    val textSize14 = 14.sp,
+//    val textSize16 = 16.sp,
+//    val textSize18 = 18.sp,
+//    val textSize20 = 20.sp,
+//    val textSize24 = 24.sp,
+//    val textSize32 = 32.sp,
+//    val textSize54 = 54.sp,
+
     )

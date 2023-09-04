@@ -9,22 +9,28 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+private val localDimens = compositionLocalOf { Dimens() }
+
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    background = white
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40,
+    background = white
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -36,6 +42,12 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
+
+val MaterialTheme.dimens: Dimens
+    @Composable
+    @ReadOnlyComposable
+    get() = localDimens.current
+
 
 @Composable
 fun NewsWaveTheme(

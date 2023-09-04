@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.the_chance.newswave.ui.features.home.HomeScreen
+import com.the_chance.newswave.ui.features.onboarding.OnboardingScreen
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,7 +16,8 @@ class MainActivity : ComponentActivity() {
             NewsWaveTheme {
                 // A surface container using the 'background' color from the theme
 
-                HomeScreen()
+                OnboardingScreen()
+//                HomeScreen()
             }
         }
     }
