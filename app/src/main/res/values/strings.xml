@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NewsWave</string>
+    <string name="onboarding_image">Onboarding Image</string>
+    <string name="stay_informed_with_news_waves">Stay informed with \n news waves</string>
+    <string name="get_ready_to_dive_into_the_headlines">Get ready to dive into the headlines!</string>
+    <string name="get_started">Get Started</string>
 </resources>
