@@ -71,4 +71,5 @@ dependencies {
         kapt(Dependencies.hiltCompiler)
 //    implementation(Dependencies.hiltCompiler)
     implementation(Dependencies.hiltDependency)
+    implementation(Dependencies.splashDependency)
 }
