@@ -1,10 +1,8 @@
 package com.the_chance.data.repository
 
 import android.util.Log
-import com.the_chance.data.source.remote.models.BaseResponse
 import com.the_chance.domain.utill.ForbiddenException
 import com.the_chance.domain.utill.NotFoundException
-import com.the_chance.domain.utill.NotValidApiKeyException
 import com.the_chance.domain.utill.UnAuthorizedException
 import retrofit2.Response
 
