@@ -4,4 +4,9 @@
     <string name="stay_informed_with_news_waves">Stay informed with \n news waves</string>
     <string name="get_ready_to_dive_into_the_headlines">Get ready to dive into the headlines!</string>
     <string name="get_started">Get Started</string>
+    <string name="the_email_can_t_be_blank">The email can\'t be blank</string>
+    <string name="that_s_not_a_valid_email">That\'s not a valid email</string>
+    <string name="the_password_can_t_be_blank">The password can\'t be blank</string>
+    <string name="icon_visible">icon visible</string>
+
 </resources>

@@ -41,6 +41,7 @@ data class Dimens(
     val heightPrimaryButton: Dp = 48.dp,
     val heightOutlinedTextField: Dp = 64.dp,
     val heightItemNewsCard: Dp = 164.dp,
+    val icon32: Dp = 32.dp,
 
 
     val card: Dp = 120.dp,
