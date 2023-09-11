@@ -8,11 +8,18 @@ import androidx.compose.ui.unit.sp
 // Set of Material typography styles to start with
 
 val Typography = Typography(
+    headlineLarge = TextStyle(
+        fontFamily = notoSans,
+        fontWeight = FontWeight.SemiBold,
+//        fontSize = 24.sp,
+    ),
+
     headlineMedium = TextStyle(
         fontFamily = notoSans,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
+//        fontSize = 20.sp,
     ),
+
     displayMedium = TextStyle(
         fontFamily = notoSans,
         fontWeight = FontWeight.Medium,

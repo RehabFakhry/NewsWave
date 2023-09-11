@@ -29,6 +29,7 @@ import com.the_chance.newswave.ui.theme.Shapes
 import com.the_chance.newswave.ui.theme.black37
 import com.the_chance.newswave.ui.theme.white200
 import com.the_chance.newswave.ui.theme.error
+import com.the_chance.newswave.ui.theme.fontSize14
 import com.the_chance.newswave.ui.theme.heightOutlinedTextField
 import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space8
@@ -58,14 +59,8 @@ fun AuthenticationTextFieldPassword(
             painterResource(id = R.drawable.eye_closed)
     Column {
         OutlinedTextField(
-
             modifier = modifier
                 .fillMaxWidth()
-                .padding(
-                    end = space16,
-                    start = space16,
-                    bottom = space8
-                )
                 .height(heightOutlinedTextField),
             keyboardActions = KeyboardActions(),
             singleLine = true,
@@ -77,6 +72,7 @@ fun AuthenticationTextFieldPassword(
                 Text(
                     text = hint,
                     color = if (isError) error else black37,
+                    fontSize = fontSize14,
                     style = MaterialTheme.typography.displaySmall,
                 )
             },
@@ -122,6 +118,7 @@ fun AuthenticationTextFieldPassword(
             Text(
                 text = errorMessage,
                 color = error,
+                fontSize = fontSize14,
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.padding(
                     start = space16,

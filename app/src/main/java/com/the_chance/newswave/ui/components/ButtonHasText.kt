@@ -11,10 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import com.the_chance.newswave.ui.theme.Primary
 import com.the_chance.newswave.ui.theme.white
@@ -36,7 +38,6 @@ fun FilledButton(
         enabled = isButtonEnabled,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
             .height(48.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = background,
@@ -63,13 +64,15 @@ fun FilledButton(
 @Composable
 fun Text(
     text: String,
-    textSize: TextUnit,
+    textSize: TextUnit = 24.sp,
+    style: TextStyle = MaterialTheme.typography.bodyMedium,
+    color: Color = White,
     modifier: Modifier = Modifier,
-){
+    ){
     Text(
         text = text,
-        color = White,
-        style = MaterialTheme.typography.bodyMedium,
+        color = color,
+        style = style,
         fontSize = textSize,
         textAlign = TextAlign.Center,
         modifier = modifier
