@@ -52,7 +52,7 @@ fun CardRecommendedNews(
                     Text(
                         text = "4 hours ago",
                         textSize = fontSize12,
-                        modifier.padding(vertical = space4)
+                        modifier = modifier.padding(vertical = space4)
                     )
                     Text(
                         text = "Author",
@@ -64,7 +64,7 @@ fun CardRecommendedNews(
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun PreviewCard() {
     CardRecommendedNews(

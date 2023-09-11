@@ -8,5 +8,13 @@
     <string name="that_s_not_a_valid_email">That\'s not a valid email</string>
     <string name="the_password_can_t_be_blank">The password can\'t be blank</string>
     <string name="icon_visible">icon visible</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="be_part_of_our_news_community_sign_up_to_get_started">Be part of our news community, sign up to get started\n</string>
+    <string name="already_have_account">already have account?</string>
+    <string name="log_in">Log in</string>
 
 </resources>

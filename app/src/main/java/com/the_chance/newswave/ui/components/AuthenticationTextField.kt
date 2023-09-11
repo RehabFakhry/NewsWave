@@ -24,6 +24,8 @@ import com.the_chance.newswave.R
 import com.the_chance.newswave.ui.theme.Shapes
 import com.the_chance.newswave.ui.theme.black37
 import com.the_chance.newswave.ui.theme.error
+import com.the_chance.newswave.ui.theme.fontSize14
+import com.the_chance.newswave.ui.theme.fontSize20
 import com.the_chance.newswave.ui.theme.heightOutlinedTextField
 import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space8
@@ -52,11 +54,6 @@ fun AuthenticationTextField(
             singleLine = oneLineOnly,
             modifier = modifier
                 .fillMaxWidth()
-                .padding(
-                    end = space16,
-                    start = space16,
-                    bottom = space8
-                )
                 .height(heightOutlinedTextField),
             value = text,
             onValueChange = onValueChange,
@@ -64,6 +61,7 @@ fun AuthenticationTextField(
                 Text(
                     text = hint,
                     color = if (isError) error else black37,
+                    fontSize = fontSize14,
                     style = MaterialTheme.typography.displaySmall,
                 )
             },
