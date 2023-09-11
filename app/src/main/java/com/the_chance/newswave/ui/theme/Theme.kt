@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val localDimens = compositionLocalOf { Dimens() }
+//private val localDimens = compositionLocalOf { Dimens() }
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -47,11 +47,11 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
-val MaterialTheme.dimens: Dimens
-    @Composable
-    @ReadOnlyComposable
-    get() = localDimens.current
-
+//val MaterialTheme.dimens: Dimens
+//    @Composable
+//    @ReadOnlyComposable
+//    get() = localDimens.current
+//
 
 @Composable
 fun NewsWaveTheme(

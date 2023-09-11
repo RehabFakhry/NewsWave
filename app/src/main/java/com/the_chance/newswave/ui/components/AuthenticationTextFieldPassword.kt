@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -28,9 +27,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import com.the_chance.newswave.R
 import com.the_chance.newswave.ui.theme.Shapes
 import com.the_chance.newswave.ui.theme.black37
-import com.the_chance.newswave.ui.theme.dimens
 import com.the_chance.newswave.ui.theme.white200
 import com.the_chance.newswave.ui.theme.error
+import com.the_chance.newswave.ui.theme.heightOutlinedTextField
+import com.the_chance.newswave.ui.theme.space16
+import com.the_chance.newswave.ui.theme.space8
+import com.the_chance.newswave.ui.theme.zero
 
 
 @Composable
@@ -60,11 +62,11 @@ fun AuthenticationTextFieldPassword(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(
-                    end = MaterialTheme.dimens.space16,
-                    start = MaterialTheme.dimens.space16,
-                    bottom = MaterialTheme.dimens.space8
+                    end = space16,
+                    start = space16,
+                    bottom = space8
                 )
-                .height(MaterialTheme.dimens.heightOutlinedTextField),
+                .height(heightOutlinedTextField),
             keyboardActions = KeyboardActions(),
             singleLine = true,
             value = text,
@@ -122,15 +124,10 @@ fun AuthenticationTextFieldPassword(
                 color = error,
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.padding(
-                    start = MaterialTheme.dimens.space16,
-                    top = MaterialTheme.dimens.zero
+                    start = space16,
+                    top = zero
                 )
             )
         }
     }
 }
-
-
-
-
-

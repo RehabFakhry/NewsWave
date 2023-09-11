@@ -24,7 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
-import com.the_chance.newswave.ui.theme.dimens
+import com.the_chance.newswave.ui.theme.space16
+import com.the_chance.newswave.ui.theme.space56
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -53,7 +54,7 @@ fun EmptyProductsPlaceholder(
                     contentScale = ContentScale.Crop
                 )
                 Text(
-                    modifier = Modifier.padding(top = MaterialTheme.dimens.space56),
+                    modifier = Modifier.padding(top = space56),
                     text = title,
                     style = MaterialTheme.typography.displayMedium,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -61,7 +62,7 @@ fun EmptyProductsPlaceholder(
                 )
                 Text(
                     text = subtitle,
-                    modifier = Modifier.padding(top = MaterialTheme.dimens.space16),
+                    modifier = Modifier.padding(top = space16),
                     style = MaterialTheme.typography.displayLarge,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                     textAlign = TextAlign.Center,

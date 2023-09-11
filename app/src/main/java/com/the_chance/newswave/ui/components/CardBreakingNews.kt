@@ -15,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import com.the_chance.newswave.ui.theme.Shapes
-import com.the_chance.newswave.ui.theme.dimens
+import com.the_chance.newswave.ui.theme.heightItemNewsCard
+import com.the_chance.newswave.ui.theme.space6
 import org.the_chance.honymart.ui.modifier.overlayBottomToTop
 
 @Composable
@@ -28,7 +29,7 @@ fun BreakingNewsCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(MaterialTheme.dimens.heightItemNewsCard)
+            .height(heightItemNewsCard)
             .clickable(onClick = onClick),
         shape = Shapes.medium
     ) {
@@ -44,7 +45,7 @@ fun BreakingNewsCard(
                 title,
                 style = MaterialTheme.typography.displayMedium,
                 color = MaterialTheme.colorScheme.onPrimary,
-                modifier = modifier.padding(MaterialTheme.dimens.space6)
+                modifier = modifier.padding(space6)
             )
         }
     }

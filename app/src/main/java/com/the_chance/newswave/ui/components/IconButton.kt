@@ -15,11 +15,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.the_chance.newswave.R
-import com.the_chance.newswave.ui.theme.dimens
+import com.the_chance.newswave.ui.theme.icon32
 
 @Composable
 fun IconButton(
-    size: Dp = MaterialTheme.dimens.icon32,
+    size: Dp = icon32,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = CircleShape,
