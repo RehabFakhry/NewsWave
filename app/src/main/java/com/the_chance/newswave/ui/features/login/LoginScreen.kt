@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.features.signup
+package com.the_chance.newswave.ui.features.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -32,17 +32,19 @@ import com.the_chance.newswave.ui.components.AuthenticationTextFieldPassword
 import com.the_chance.newswave.ui.components.FilledButton
 import com.the_chance.newswave.ui.components.SignupFooter
 import com.the_chance.newswave.ui.components.Text
+import com.the_chance.newswave.ui.features.signup.SignupScreen
 import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space8
+import kotlin.math.sign
 
 @Composable
-fun SignupScreen() {
-    SignupContent()
+fun LoginScreen(){
+    LoginContent()
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun SignupContent(
+fun LoginContent(
     modifier: Modifier = Modifier
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -58,45 +60,29 @@ fun SignupContent(
             contentDescription = "Auth Image",
             modifier = modifier
                 .fillMaxWidth()
-                .size(350.dp)
-                .offset(x = 70.dp, y = (-65).dp)
+                .size(360.dp)
+                .offset(x = 60.dp)
         )
     }
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(top = 215.dp)
+            .padding(top = 325.dp)
             .padding(horizontal = space16),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(space8)
+        verticalArrangement = Arrangement.spacedBy(space16)
     ) {
 
         Text(
-            text = stringResource(R.string.sign_up),
+            text = stringResource(R.string.welcome_back),
             color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.headlineLarge,
         )
 
         Text(
-            text = stringResource(R.string.be_part_of_our_news_community_sign_up_to_get_started),
+            text = stringResource(R.string.stay_ahead_of_the_news_curve_log_in_to_your_account_now),
             color = MaterialTheme.colorScheme.onSecondaryContainer,
             style = MaterialTheme.typography.headlineMedium,
-        )
-
-        AuthenticationTextField(
-            oneLineOnly = true,
-            text = "",
-            hint = stringResource(R.string.full_name),
-            iconPainter = painterResource(id = R.drawable.ic_person),
-            onValueChange = {},
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Next
-            ),
-            keyboardActions = KeyboardActions(
-                onNext = { focusManager.moveFocus(FocusDirection.Next) }
-            )
-            //                errorMessage = "error message",
         )
 
         AuthenticationTextField(
@@ -130,19 +116,8 @@ fun SignupContent(
 //                errorMessage = "state.passwordState.errorState",
         )
 
-        AuthenticationTextFieldPassword(
-            text = "",
-            hint = stringResource(R.string.confirm_password),
-            iconPainter = painterResource(id = R.drawable.ic_password),
-            onValueChange = {},
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
-            keyboardActions = KeyboardActions(
-                onDone = { keyboardController?.hide() })
-            //                errorMessage = "state.confirmPasswordState.errorState",
-        )
-
         FilledButton(
-            label = stringResource(id = R.string.sign_up),
+            label = stringResource(id = R.string.log_in),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = space8),
@@ -150,14 +125,14 @@ fun SignupContent(
             isLoading = false
         )
         SignupFooter(
-            stringResource(id = R.string.already_have_account),
-            stringResource(id = R.string.log_in)
+            stringResource(R.string.you_don_t_have_account),
+            stringResource(id = R.string.sign_up), modifier.padding(top = space8)
         )
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun PreviewSignUpScreen() {
-    SignupScreen()
+fun PreviewLoginScreen() {
+    LoginScreen()
 }

@@ -3,6 +3,7 @@ plugins {
     kotlin(Plugins.KOTLIN_ANDROID)
     kotlin(Plugins.KOTLIN_KAPT)
     id(Plugins.HILT_LIBRARY)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -63,6 +64,7 @@ dependencies {
     Dependencies.composeDependency.forEach { implementation(it) }
     implementation(platform(Dependencies.composePlatformBom))
     implementation("androidx.compose.material3:material3")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation(platform(Dependencies.composePlatformBomAndroidTest))
     Dependencies.androidTestDependencies.forEach { androidTestImplementation(it) }

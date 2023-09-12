@@ -16,5 +16,8 @@
     <string name="be_part_of_our_news_community_sign_up_to_get_started">Be part of our news community, sign up to get started\n</string>
     <string name="already_have_account">already have account?</string>
     <string name="log_in">Log in</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="stay_ahead_of_the_news_curve_log_in_to_your_account_now">Stay ahead of the news curve. Log in to your account now</string>
+    <string name="you_don_t_have_account">you don\'t have account?</string>
 
 </resources>

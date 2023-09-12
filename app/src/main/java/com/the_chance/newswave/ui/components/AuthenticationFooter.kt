@@ -22,6 +22,8 @@ import com.the_chance.newswave.ui.theme.space32
 
 @Composable
 fun SignupFooter(
+    fistTitle: String,
+    secondTitle: String,
     modifier: Modifier = Modifier,
 //    listener: SignupInteractionListener
 ){
@@ -31,7 +33,7 @@ fun SignupFooter(
         modifier = modifier.padding(bottom = space32)
     ) {
         Text(
-            text = stringResource(R.string.already_have_account),
+            text = fistTitle,
             style = MaterialTheme.typography.displaySmall.copy(black37),
             textAlign = TextAlign.Center,
             fontSize = fontSize12
@@ -41,7 +43,7 @@ fun SignupFooter(
             colors = ButtonDefaults.textButtonColors(Color.Transparent)
         ) {
             Text(
-                text = stringResource(R.string.log_in),
+                text = secondTitle,
                 style = MaterialTheme.typography.displayLarge.copy(Primary),
                 textAlign = TextAlign.Center,
                 fontSize = fontSize14
