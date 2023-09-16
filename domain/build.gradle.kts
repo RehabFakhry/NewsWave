@@ -2,7 +2,6 @@ plugins {
     id(Plugins.JAVA_LIBRARY)
     id(Plugins.KOTLIN_JVM)
     kotlin(Plugins.KOTLIN_KAPT)
-
 }
 
 java {
@@ -13,5 +12,4 @@ java {
 dependencies {
     implementation(Dependencies.daggerAndroid)
     implementation(Dependencies.coroutinesDependency)
-
 }
