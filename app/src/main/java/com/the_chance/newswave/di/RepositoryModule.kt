@@ -16,4 +16,8 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindNewsRepository(repository: NewsRepositoryImpl): NewsRepository
 
+//    @Singleton
+//    @Binds
+//    abstract fun bindAuthRepository(repository: AuthRepositoryImpl): AuthRepository
+
 }

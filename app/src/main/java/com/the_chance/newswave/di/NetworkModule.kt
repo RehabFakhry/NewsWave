@@ -1,5 +1,8 @@
 package com.the_chance.newswave.di
 
+import android.app.Application
+import androidx.savedstate.SavedStateRegistryOwner
+import com.google.firebase.auth.FirebaseAuth
 import com.the_chance.data.source.remote.network.NewsService
 import dagger.Module
 import dagger.Provides
@@ -15,25 +18,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-        private const val API_KEY = "ae9d7ae31523e9bc1400e9f2f8229fc4"
-        private const val BASE_URL = "http://api.mediastack.com/v1/"
+    private const val API_KEY = "ae9d7ae31523e9bc1400e9f2f8229fc4"
+    private const val BASE_URL = "http://api.mediastack.com/v1/"
 
-
-//    @Singleton
-//    @Provides
-//    fun provideOkHttpClient(
-//        loggingInterceptor: HttpLoggingInterceptor,
-//    ): OkHttpClient = OkHttpClient
-//        .Builder()
-//        .addInterceptor(loggingInterceptor)
-//        .addInterceptor { chain ->
-//            // Add the API key as a header to the request
-//            val request = chain.request().newBuilder()
-//                .addHeader("Authorization", "Bearer $API_KEY")
-//                .build()
-//            chain.proceed(request)
-//        }
-//        .build()
 
     @Singleton
     @Provides
@@ -62,7 +49,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor{
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
     }
 
@@ -78,12 +65,16 @@ object NetworkModule {
         .addConverterFactory(factory)
         .build()
 
+    @Singleton
+    @Provides
+    fun provideFirebaseAuth() = FirebaseAuth.getInstance()
+
 
     @Singleton
     @Provides
     fun provideNewsService(
         retrofit: Retrofit
-    ):NewsService = retrofit.create(NewsService::class.java)
+    ): NewsService = retrofit.create(NewsService::class.java)
 
 
     @Singleton
@@ -91,3 +82,20 @@ object NetworkModule {
     fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
 }
+
+
+//    @Singleton
+//    @Provides
+//    fun provideOkHttpClient(
+//        loggingInterceptor: HttpLoggingInterceptor,
+//    ): OkHttpClient = OkHttpClient
+//        .Builder()
+//        .addInterceptor(loggingInterceptor)
+//        .addInterceptor { chain ->
+//            // Add the API key as a header to the request
+//            val request = chain.request().newBuilder()
+//                .addHeader("Authorization", "Bearer $API_KEY")
+//                .build()
+//            chain.proceed(request)
+//        }
+//        .build()

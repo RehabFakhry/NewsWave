@@ -38,7 +38,7 @@ fun OnboardingScreen() {
         Image(
             painter = painterResource(id = R.drawable.image_onboarding),
             contentDescription = stringResource(R.string.onboarding_image),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize(),
         )
 
