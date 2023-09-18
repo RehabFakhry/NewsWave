@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
             CompositionLocalProvider(LocalNavigationProvider provides rememberNavController()) {
                 NewsWaveTheme {
                     val bottomNavState = checkBottomBarState()
-
                     Scaffold(
                         bottomBar = {
                             BottomBarUi(bottomNavState)

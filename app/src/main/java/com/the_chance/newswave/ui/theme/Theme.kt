@@ -27,11 +27,11 @@ import com.google.android.material.color.utilities.MaterialDynamicColors.primary
 private val DarkColorScheme = darkColorScheme(
     primaryContainer = darkBackground400,
     primary = Primary,
-    secondary = PurpleGrey80,
-    tertiary = Pink80,
-    background = white,
+    secondary = darkBackground200,
+    background = darkBackground200,
     onBackground = darkText87,
     onSecondaryContainer = black60,
+    tertiary = darkBackground400,
     onTertiary = darkBackground300,
     onTertiaryContainer = black37,
     surface = darkBackground200,
@@ -39,18 +39,16 @@ private val DarkColorScheme = darkColorScheme(
     errorContainer = darkBackground400,
     onErrorContainer = Primary,
 
-
-
     )
 
 private val LightColorScheme = lightColorScheme(
     primaryContainer = white,
     primary = Primary,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
+    secondary = white,
     background = white,
     onBackground = blackOn87,
     onSecondaryContainer = blackOn60,
+    tertiary = white,
     onTertiary = white,
     onTertiaryContainer = black16,
     surface = background,
@@ -58,12 +56,8 @@ private val LightColorScheme = lightColorScheme(
     errorContainer = Primary,
     onErrorContainer = black37,
 
-
-
-
-
-
     )
+
 
 //val MaterialTheme.dimens: Dimens
 //    @Composable
@@ -74,8 +68,6 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun NewsWaveTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-//    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
@@ -96,7 +88,7 @@ fun NewsWaveTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = Color.Transparent.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
