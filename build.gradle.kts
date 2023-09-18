@@ -5,7 +5,8 @@ buildscript {
         classpath(Dependencies.Classpath.toolsBuildClasspath)
         classpath(Dependencies.Classpath.googleServiceClasspath)
         classpath(Dependencies.Classpath.kotlinSerializationClasspath)
-//        classpath("com.google.gms:google-services:4.3.15")
+//        classpath("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
+
     }
 }
 

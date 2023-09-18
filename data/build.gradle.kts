@@ -5,7 +5,7 @@ plugins {
     id(Plugins.SERIALIZATION)
     kotlin(Plugins.KOTLIN_ANDROID)
     kotlin(Plugins.KOTLIN_KAPT)
-    id ("com.google.gms.google-services")
+//    id ("com.google.gms.google-services")
 
 }
 
@@ -60,7 +60,7 @@ dependencies {
 //    implementation(Dependencies.hiltCompiler)
     implementation(Dependencies.daggerAndroid)
 //    implementation ("com.google.firebase:firebase-auth:22.1.1")
-    implementation ("com.google.firebase:firebase-auth-ktx:22.1.1")
-    implementation ("com.google.firebase:firebase-auth:22.1.1")
+//    implementation ("com.google.firebase:firebase-auth-ktx:22.1.1")
+//    implementation ("com.google.firebase:firebase-auth:22.1.1")
 
 }

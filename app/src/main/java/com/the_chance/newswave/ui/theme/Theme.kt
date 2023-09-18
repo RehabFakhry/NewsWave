@@ -20,11 +20,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.android.material.color.utilities.MaterialDynamicColors.primary
 
 //private val localDimens = compositionLocalOf { Dimens() }
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+    primaryContainer = darkBackground400,
+    primary = Primary,
     secondary = PurpleGrey80,
     tertiary = Pink80,
     background = white,
@@ -32,10 +34,18 @@ private val DarkColorScheme = darkColorScheme(
     onSecondaryContainer = black60,
     onTertiary = darkBackground300,
     onTertiaryContainer = black37,
-)
+    surface = darkBackground200,
+    outlineVariant = white,
+    errorContainer = darkBackground400,
+    onErrorContainer = Primary,
+
+
+
+    )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    primaryContainer = white,
+    primary = Primary,
     secondary = PurpleGrey40,
     tertiary = Pink40,
     background = white,
@@ -43,8 +53,17 @@ private val LightColorScheme = lightColorScheme(
     onSecondaryContainer = blackOn60,
     onTertiary = white,
     onTertiaryContainer = black16,
+    surface = background,
+    outlineVariant = black8,
+    errorContainer = Primary,
+    onErrorContainer = black37,
 
-)
+
+
+
+
+
+    )
 
 //val MaterialTheme.dimens: Dimens
 //    @Composable

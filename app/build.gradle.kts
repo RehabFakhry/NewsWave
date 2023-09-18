@@ -3,6 +3,7 @@ plugins {
     kotlin(Plugins.KOTLIN_ANDROID)
     kotlin(Plugins.KOTLIN_KAPT)
     id(Plugins.HILT_LIBRARY)
+    id(Plugins.NAVIGATION_ARGS)
     id("com.google.gms.google-services")
 }
 
@@ -39,9 +40,7 @@ android {
     buildFeatures {
         compose = true
     }
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
-//    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -66,11 +65,16 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     testImplementation("junit:junit:4.13.2")
+    Dependencies.navigationDependencies.forEach { implementation(it) }
+    implementation(Dependencies.glideDependency)
+    implementation(Dependencies.coilDependency)
+    //navigation
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.navigation:navigation-compose:2.6.0")
     androidTestImplementation(platform(Dependencies.composePlatformBomAndroidTest))
     Dependencies.androidTestDependencies.forEach { androidTestImplementation(it) }
     debugImplementation(Dependencies.composeUiDependency)
     Dependencies.debugmplementation.forEach { debugImplementation(it)}
         kapt(Dependencies.hiltCompiler)
-//    implementation(Dependencies.hiltCompiler)
     implementation(Dependencies.hiltDependency)
 }
