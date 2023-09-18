@@ -15,22 +15,22 @@ sealed class BottomBarItems(
         unSelectedIcon = R.drawable.icon_home,
     )
 
-    object Discover : BottomBarItems(
-        route = "Discover",
+    data object Discover : BottomBarItems(
+        route = Graph.DISCOVER,
         label = R.string.discover,
         selectedIcon = R.drawable.icon_discover,
         unSelectedIcon = R.drawable.icon_discover
     )
 
     object Saved : BottomBarItems(
-        route = "Saved",
+        route = Graph.SAVED,
         label = R.string.saved,
         selectedIcon = R.drawable.icon_saved,
         unSelectedIcon = R.drawable.icon_saved
     )
 
     object Profile : BottomBarItems(
-        route = "Profile",
+        route = Graph.PROFILE,
         label = R.string.profile,
         selectedIcon = R.drawable.icon_profile,
         unSelectedIcon = R.drawable.icon_profile
