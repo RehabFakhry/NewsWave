@@ -5,41 +5,41 @@ import com.google.gson.annotations.SerializedName
 
 data class NewsDto(
     @SerializedName("data")
-    val `data`: List<Data?>?,
+    val `data`: List<Data>,
     @SerializedName("pagination")
-    val pagination: Pagination?
+    val pagination: Pagination
 ) {
     data class Data(
         @SerializedName("author")
-        val author: String?,
+        val author: String,
         @SerializedName("category")
-        val category: String?,
+        val category: String,
         @SerializedName("country")
-        val country: String?,
+        val country: String,
         @SerializedName("description")
-        val description: String?,
+        val description: String,
         @SerializedName("image")
-        val image: String?,
+        val image: String,
         @SerializedName("language")
-        val language: String?,
+        val language: String,
         @SerializedName("published_at")
-        val publishedAt: String?,
+        val publishedAt: String,
         @SerializedName("source")
-        val source: String?,
+        val source: String,
         @SerializedName("title")
-        val title: String?,
+        val title: String,
         @SerializedName("url")
-        val url: String?
+        val url: String
     )
 
     data class Pagination(
         @SerializedName("count")
-        val count: Int?,
+        val count: Int,
         @SerializedName("limit")
-        val limit: Int?,
+        val limit: Int,
         @SerializedName("offset")
-        val offset: Int?,
+        val offset: Int,
         @SerializedName("total")
-        val total: Int?
+        val total: Int
     )
 }
