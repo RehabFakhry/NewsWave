@@ -1,4 +1,4 @@
-package org.the_chance.honymart.ui.modifier
+package com.the_chance.newswave.ui.components.modifier
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
@@ -14,7 +14,7 @@ fun Modifier.overlayBottomToTop(): Modifier {
                 Brush.verticalGradient(
                     0F to Color.Transparent,
                     0.5F to Color.Transparent,
-                    0.9f to Color(0x99000000),
+                    0.99f to Color(0x99000000),
                 ),
             )
         }
