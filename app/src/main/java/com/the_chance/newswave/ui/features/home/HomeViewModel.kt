@@ -36,17 +36,8 @@ HomeInteractionListener {
                     news = news.map { newsArticle -> newsArticle.toNewsUiState() }
                 )
             }
-        } else {
-            // Handle the case where news is null or empty, e.g., show an error message
-            _state.update {
-                it.copy(
-                    isLoading = false,
-                    isError = true,
-                    error = ErrorHandler.NotFound // or any suitable error code/message
-                )
-            }
         }
-    }
+        }
 
     private fun onGetAllNewsError(error: ErrorHandler) {
         _state.update { it.copy(isLoading = false, error = error) }
