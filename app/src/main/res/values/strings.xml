@@ -24,5 +24,9 @@
     <string name="saved">Saved</string>
     <string name="profile">Profile</string>
     <string name="navigation_icon">Navigation icon</string>
+    <string name="world_news">World news</string>
+    <string name="breaking_news">Breaking News</string>
+    <string name="show_more">Show More</string>
+    <string name="recommended">Recommended</string>
 
 </resources>

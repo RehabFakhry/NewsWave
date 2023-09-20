@@ -1,5 +1,6 @@
 package com.the_chance.newswave
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -20,23 +21,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.savedstate.SavedStateRegistryOwner
-import com.the_chance.newswave.ui.features.home.HomeScreen
-import com.the_chance.newswave.ui.features.onboarding.OnboardingScreen
-import com.the_chance.newswave.ui.features.signup.SignupScreen
-import com.the_chance.newswave.ui.navigation.BottomBarUi
+import com.the_chance.newswave.ui.navigation.bottom_nav.BottomBarUi
 import com.the_chance.newswave.ui.navigation.LocalNavigationProvider
-import com.the_chance.newswave.ui.navigation.MainNavGraph
-import com.the_chance.newswave.ui.navigation.Screen
+import com.the_chance.newswave.ui.navigation.nav_graph.MainNavGraph
+import com.the_chance.newswave.ui.navigation.bottom_nav.Screen
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContent {
             CompositionLocalProvider(LocalNavigationProvider provides rememberNavController()) {
                 NewsWaveTheme {
@@ -46,12 +43,12 @@ class MainActivity : ComponentActivity() {
                             BottomBarUi(bottomNavState)
                         },
                         contentWindowInsets = WindowInsets(0, 0, 0, 0)
-                    ) { innerPadding ->
+                    ) { paddingValues ->
                         Box(
                             modifier = Modifier
                                 .background(MaterialTheme.colorScheme.background)
                                 .fillMaxSize()
-                                .padding(innerPadding)
+                                .padding(paddingValues)
                         )
                         { MainNavGraph() }
                     }
@@ -86,4 +83,3 @@ class MainActivity : ComponentActivity() {
         return bottomBarState
     }
 }
-
