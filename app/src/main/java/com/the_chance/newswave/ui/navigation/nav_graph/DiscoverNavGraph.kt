@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.navigation
+package com.the_chance.newswave.ui.navigation.nav_graph
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation

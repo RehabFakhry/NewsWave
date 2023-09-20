@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.navigation.nav_graph
+package com.the_chance.newswave.ui.navigation.nav_graph.bottom_nav
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
@@ -22,7 +22,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.the_chance.newswave.R
+import com.the_chance.newswave.ui.navigation.BottomBarItems
 import com.the_chance.newswave.ui.navigation.LocalNavigationProvider
+import com.the_chance.newswave.ui.navigation.nav_graph.Screen
 import com.the_chance.newswave.ui.theme.black60
 import com.the_chance.newswave.ui.theme.white
 
@@ -109,6 +111,8 @@ fun RowScope.AddItem(
                 BottomBarItems.Profile -> {
                     navController.popBackStack(Screen.ProfileScreen.route, false)
                 }
+
+                else -> {}
             }
 
         },
