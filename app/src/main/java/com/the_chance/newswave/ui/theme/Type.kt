@@ -11,13 +11,13 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = notoSans,
         fontWeight = FontWeight.SemiBold,
-//        fontSize = 24.sp,
+        fontSize = 24.sp,
     ),
 
     headlineMedium = TextStyle(
         fontFamily = notoSans,
         fontWeight = FontWeight.SemiBold,
-//        fontSize = 20.sp,
+        fontSize = 20.sp,
     ),
 
     displayMedium = TextStyle(

@@ -21,10 +21,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.the_chance.newswave.ui.navigation.bottom_nav.BottomBarUi
+import com.the_chance.newswave.ui.navigation.nav_graph.BottomBarUi
 import com.the_chance.newswave.ui.navigation.LocalNavigationProvider
 import com.the_chance.newswave.ui.navigation.nav_graph.MainNavGraph
-import com.the_chance.newswave.ui.navigation.bottom_nav.Screen
+import com.the_chance.newswave.ui.navigation.nav_graph.Screen
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import dagger.hilt.android.AndroidEntryPoint
 

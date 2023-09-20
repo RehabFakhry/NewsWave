@@ -39,7 +39,8 @@ val itemCardImage: Dp = 88.dp
 val smallButton: Dp = 32.dp
 val heightPrimaryButton: Dp = 48.dp
 val heightOutlinedTextField: Dp = 64.dp
-val heightItemNewsCard: Dp = 164.dp
+val heightItemNewsCard: Dp = 192.dp
+val icon24: Dp = 24.dp
 val icon32: Dp = 32.dp
 
 

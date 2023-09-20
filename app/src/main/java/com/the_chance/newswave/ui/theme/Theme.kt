@@ -1,11 +1,8 @@
 package com.the_chance.newswave.ui.theme
 
 import android.app.Activity
-import android.graphics.Color.toArgb
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -19,7 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.material.color.utilities.MaterialDynamicColors.primary
 
@@ -38,7 +38,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = darkBackground200,
     outlineVariant = white,
     errorContainer = darkBackground400,
-    onErrorContainer = Primary,
+    onErrorContainer = black37,
 
     )
 
@@ -55,7 +55,7 @@ private val LightColorScheme = lightColorScheme(
     surface = background,
     outlineVariant = black8,
     errorContainer = Primary,
-    onErrorContainer = black37,
+    onErrorContainer = Primary,
 
     )
 
@@ -73,24 +73,34 @@ fun NewsWaveTheme(
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
     val systemUiController = rememberSystemUiController()
-    val darkIcons = !darkTheme
+    val darkIcon = !darkTheme
+    val useDarkIcons = true
 
-    DisposableEffect(systemUiController, darkIcons) {
+
+    DisposableEffect(systemUiController, darkIcon) {
         systemUiController.setSystemBarsColor(
             color = Color.Transparent,
-            darkIcons = darkIcons,
+            darkIcons = darkIcon,
             isNavigationBarContrastEnforced = false
         )
-
         onDispose {}
-        }
+    }
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+
+            ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, windowInsets ->
+                val insets = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.systemGestures()
+                )
+                view.updatePadding(
+                    bottom = insets.bottom
+                )
+                WindowInsetsCompat.CONSUMED
+            }
         }
     }
 
