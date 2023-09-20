@@ -42,12 +42,10 @@ import com.the_chance.newswave.ui.components.AuthenticationTextField
 import com.the_chance.newswave.ui.components.AuthenticationTextFieldPassword
 import com.the_chance.newswave.ui.components.FilledButton
 import com.the_chance.newswave.ui.components.SignupFooter
-import com.the_chance.newswave.ui.components.Text
-import com.the_chance.newswave.ui.features.signup.SignupScreen
+import com.the_chance.newswave.ui.components.TextReuzable
 import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space8
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 @Composable
 fun LoginScreen(
@@ -94,13 +92,13 @@ fun LoginContent(
         verticalArrangement = Arrangement.spacedBy(space16)
     ) {
 
-        Text(
+        TextReuzable(
             text = stringResource(R.string.welcome_back),
             color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.headlineLarge,
         )
 
-        Text(
+        TextReuzable(
             text = stringResource(R.string.stay_ahead_of_the_news_curve_log_in_to_your_account_now),
             color = MaterialTheme.colorScheme.onSecondaryContainer,
             style = MaterialTheme.typography.headlineMedium,

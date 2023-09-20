@@ -42,7 +42,7 @@ import com.the_chance.newswave.ui.components.AuthenticationTextField
 import com.the_chance.newswave.ui.components.AuthenticationTextFieldPassword
 import com.the_chance.newswave.ui.components.FilledButton
 import com.the_chance.newswave.ui.components.SignupFooter
-import com.the_chance.newswave.ui.components.Text
+import com.the_chance.newswave.ui.components.TextReuzable
 import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space8
 import kotlinx.coroutines.launch
@@ -94,13 +94,13 @@ fun SignupContent(
         verticalArrangement = Arrangement.spacedBy(space8)
     ) {
 
-        Text(
+        TextReuzable(
             text = stringResource(R.string.sign_up),
             color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.headlineLarge,
         )
 
-        Text(
+        TextReuzable(
             text = stringResource(R.string.be_part_of_our_news_community_sign_up_to_get_started),
             color = MaterialTheme.colorScheme.onSecondaryContainer,
             style = MaterialTheme.typography.headlineMedium,
