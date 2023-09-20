@@ -1,15 +1,17 @@
-package com.the_chance.newswave.ui.navigation
+package com.the_chance.newswave.ui.navigation.nav_graph
 
 sealed class Screen(val route: String){
+
+    object OnBoardingScreen : Screen("onboardingScreen")
+
     object LoginScreen : Screen("loginScreen")
     object SignupScreen : Screen("signupScreen")
 
-    object OnBoardingScreen : Screen("onboardingScreen")
     object HomeScreen : Screen("homeScreen")
     object DiscoverScreen : Screen("discoverScreen")
     object SearchScreen : Screen("searchScreen")
     object NewsDetailsScreen : Screen("newsDetailsScreen")
-    object ProfileScreen : Screen("profileScreen")
     object SavedNewsScreen : Screen("savedNewsScreen")
+    object ProfileScreen : Screen("profileScreen")
 
 }

@@ -1,6 +1,7 @@
 package com.the_chance.newswave.ui.navigation
 
 import com.the_chance.newswave.R
+import com.the_chance.newswave.ui.navigation.nav_graph.Graph
 
 sealed class BottomBarItems(
     val route: String,

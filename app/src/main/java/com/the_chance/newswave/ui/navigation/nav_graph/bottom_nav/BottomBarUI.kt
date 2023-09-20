@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.navigation
+package com.the_chance.newswave.ui.navigation.nav_graph
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
@@ -22,6 +22,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.the_chance.newswave.R
+import com.the_chance.newswave.ui.navigation.LocalNavigationProvider
 import com.the_chance.newswave.ui.theme.black60
 import com.the_chance.newswave.ui.theme.white
 

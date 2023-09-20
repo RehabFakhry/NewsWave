@@ -5,6 +5,7 @@ import androidx.navigation.navigation
 import com.the_chance.newswave.ui.features.discover.discoverRoute
 import com.the_chance.newswave.ui.features.news_details.newsDetailsRoute
 import com.the_chance.newswave.ui.features.search.searchRoute
+import com.the_chance.newswave.ui.navigation.nav_graph.Screen
 
 fun NavGraphBuilder.discoverNavGraph() {
     navigation(

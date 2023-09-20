@@ -8,6 +8,7 @@ import com.the_chance.newswave.ui.features.news_details.newsDetailsRoute
 import com.the_chance.newswave.ui.features.profile.profileRoute
 import com.the_chance.newswave.ui.features.saved_news.savedNewsRoute
 import com.the_chance.newswave.ui.features.search.searchRoute
+import com.the_chance.newswave.ui.navigation.nav_graph.Screen
 
 fun NavGraphBuilder.homeNavGraph() {
     navigation(
@@ -16,9 +17,9 @@ fun NavGraphBuilder.homeNavGraph() {
     ) {
         homeRoute()
         discoverRoute()
+        searchRoute()
         profileRoute()
         savedNewsRoute()
-        searchRoute()
         newsDetailsRoute()
     }
 }
