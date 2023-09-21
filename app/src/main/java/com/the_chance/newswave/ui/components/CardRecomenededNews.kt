@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +39,6 @@ fun CardRecommendedNews(
     author: List<String>,
     modifier: Modifier = Modifier,
 ) {
-
     Column(
         verticalArrangement = Arrangement.spacedBy(space8),
     ) {
@@ -79,7 +77,7 @@ fun CardRecommendedNews(
                         CustomChip(
                             state = true,
                             text = "Business",
-                            width = 60.dp,
+                            width = 80.dp,
                             height = 28.dp,
                             onClick = {}
                         )

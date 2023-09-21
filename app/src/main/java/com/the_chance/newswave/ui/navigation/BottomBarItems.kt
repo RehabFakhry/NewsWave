@@ -1,7 +1,6 @@
 package com.the_chance.newswave.ui.navigation
 
 import com.the_chance.newswave.R
-import com.the_chance.newswave.ui.navigation.nav_graph.Graph
 
 sealed class BottomBarItems(
     val route: String,
@@ -9,29 +8,29 @@ sealed class BottomBarItems(
     val selectedIcon: Int,
     val unSelectedIcon: Int,
 ) {
-    object Home : BottomBarItems(
-        route = Graph.HOME,
+    data object Home : BottomBarItems(
+        route = Screen.HomeScreen.route,
         label = R.string.home,
         selectedIcon = R.drawable.icon_home,
         unSelectedIcon = R.drawable.icon_home,
     )
 
     data object Discover : BottomBarItems(
-        route = Graph.DISCOVER,
+        route = Screen.DiscoverScreen.route,
         label = R.string.discover,
         selectedIcon = R.drawable.icon_discover,
         unSelectedIcon = R.drawable.icon_discover
     )
 
-    object Saved : BottomBarItems(
-        route = Graph.SAVED,
+    data object Saved : BottomBarItems(
+        route = Screen.SavedNewsScreen.route,
         label = R.string.saved,
         selectedIcon = R.drawable.icon_saved,
         unSelectedIcon = R.drawable.icon_saved
     )
 
-    object Profile : BottomBarItems(
-        route = Graph.PROFILE,
+    data object Profile : BottomBarItems(
+        route = Screen.ProfileScreen.route,
         label = R.string.profile,
         selectedIcon = R.drawable.icon_profile,
         unSelectedIcon = R.drawable.icon_profile

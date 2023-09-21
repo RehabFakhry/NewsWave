@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.navigation.nav_graph.bottom_nav
+package com.the_chance.newswave.ui.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
@@ -21,10 +21,6 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.the_chance.newswave.R
-import com.the_chance.newswave.ui.navigation.BottomBarItems
-import com.the_chance.newswave.ui.navigation.LocalNavigationProvider
-import com.the_chance.newswave.ui.navigation.nav_graph.Screen
 import com.the_chance.newswave.ui.theme.black60
 import com.the_chance.newswave.ui.theme.white
 
@@ -68,25 +64,28 @@ fun RowScope.AddItem(
     currentDestination: NavDestination?,
     navController: NavHostController,
 ) {
+
     val selected =
         currentDestination?.hierarchy?.any { it.route == screen.route } == true
+
     NavigationBarItem(
         icon = {
             Icon(
                 painter =
                 if (selected) painterResource(id = screen.selectedIcon)
                 else painterResource(id = screen.unSelectedIcon),
-                contentDescription = stringResource(R.string.navigation_icon),
+                contentDescription = "",
                 tint = if (selected) white else MaterialTheme.colorScheme.outlineVariant
             )
         },
-        selected = selected,
+
         label = {
             Text(
                 text = if (selected) stringResource(id = screen.label) else "",
                 color = MaterialTheme.colorScheme.onErrorContainer
             )
         },
+        selected = selected,
         onClick = {
             navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id) {
@@ -95,26 +94,6 @@ fun RowScope.AddItem(
                 launchSingleTop = true
                 restoreState = true
             }
-            when (screen) {
-                BottomBarItems.Home -> {
-                    navController.popBackStack(Screen.HomeScreen.route, false)
-                }
-
-                BottomBarItems.Discover -> {
-                    navController.popBackStack(Screen.DiscoverScreen.route, false)
-                }
-
-                BottomBarItems.Saved -> {
-                    navController.popBackStack(Screen.SavedNewsScreen.route, false)
-                }
-
-                BottomBarItems.Profile -> {
-                    navController.popBackStack(Screen.ProfileScreen.route, false)
-                }
-
-                else -> {}
-            }
-
         },
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = white,
