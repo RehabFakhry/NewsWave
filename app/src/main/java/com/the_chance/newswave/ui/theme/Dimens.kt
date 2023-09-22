@@ -32,7 +32,7 @@ val fontSize14: TextUnit = 14.sp
 
 val strokeNormal: Dp = 1.dp
 
-val lottieLoading: Dp = 100.dp
+val lottieLoading: Dp = 250.dp
 val itemCardImage: Dp = 88.dp
 
 

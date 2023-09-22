@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
@@ -26,14 +25,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import com.the_chance.newswave.ui.theme.black37
-import com.the_chance.newswave.ui.theme.fontSize12
 import com.the_chance.newswave.ui.theme.fontSize14
-import com.the_chance.newswave.ui.theme.fontSize16
-import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space2
 import com.the_chance.newswave.ui.theme.space4
-import com.the_chance.newswave.ui.theme.space6
-import com.the_chance.newswave.ui.theme.space8
 import com.the_chance.newswave.ui.theme.white
 
 @Composable
@@ -41,8 +35,8 @@ fun CustomChip(
     modifier: Modifier = Modifier,
     state: Boolean,
     text: String,
-    width: Dp = 64.dp,
-    height: Dp = 36.dp,
+    width: Dp = 60.dp,
+    height: Dp = 32.dp,
     style: TextStyle = MaterialTheme.typography.bodyMedium,
     onClick: () -> Unit,
 ) {
@@ -61,7 +55,7 @@ fun CustomChip(
         shape = CircleShape
     ) {
         Text(
-            modifier = Modifier,
+            modifier = Modifier.padding(start = space4),
             textAlign = TextAlign.Center,
             fontSize = fontSize14,
             text = text,
