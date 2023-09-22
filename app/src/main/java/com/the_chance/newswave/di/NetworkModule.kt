@@ -1,7 +1,5 @@
 package com.the_chance.newswave.di
 
-import android.app.Application
-import androidx.savedstate.SavedStateRegistryOwner
 import com.google.firebase.auth.FirebaseAuth
 import com.the_chance.data.source.remote.network.NewsService
 import dagger.Module

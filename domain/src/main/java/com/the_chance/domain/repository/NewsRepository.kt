@@ -4,4 +4,7 @@ import com.the_chance.domain.model.NewsArticle
 
 interface NewsRepository {
     suspend fun getAllNews(): List<NewsArticle>?
+
+    suspend fun getAllNewsByDate(date: String): List<NewsArticle>?
+
 }

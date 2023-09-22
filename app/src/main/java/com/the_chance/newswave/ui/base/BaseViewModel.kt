@@ -44,10 +44,10 @@ abstract class BaseViewModel<T, E>(initialState: T) : ViewModel() {
         viewModelScope.launch(dispatcher) {
             try {
                 val result = function()
-//                log("RRR:$result ")
+                log("RRR:$result ")
                 onSuccess(result)
             } catch (exception: Exception) {
-                log("tryToExecute error Exception: ${exception}")
+                log("tryToExecute error Exception: $exception")
                 onError(ErrorHandler.NotFound)
             }
         }

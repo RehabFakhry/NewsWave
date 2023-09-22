@@ -11,7 +11,7 @@ data class NewsDto(
 ) {
     data class Data(
         @SerializedName("author")
-        val author: String,
+        val author: String?,
         @SerializedName("category")
         val category: String,
         @SerializedName("country")
@@ -19,7 +19,7 @@ data class NewsDto(
         @SerializedName("description")
         val description: String,
         @SerializedName("image")
-        val image: String,
+        val image: String?,
         @SerializedName("language")
         val language: String,
         @SerializedName("published_at")
