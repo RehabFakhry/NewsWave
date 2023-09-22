@@ -1,22 +1,29 @@
 package com.the_chance.newswave.ui.features.home
 
+import android.util.Log
 import com.the_chance.domain.model.NewsArticle
+import com.the_chance.domain.usecase.GetAllNewsByDateUseCase
 import com.the_chance.domain.usecase.GetAllNewsUseCase
 import com.the_chance.domain.utill.ErrorHandler
 import com.the_chance.newswave.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getAllNewsUseCase: GetAllNewsUseCase,
-) : BaseViewModel<NewsArticleUiState, HomeUiEffect>(NewsArticleUiState()),
-HomeInteractionListener {
+    private val getAllNewsByDateUseCase: GetAllNewsByDateUseCase,
+) : BaseViewModel<HomeUiState, HomeUiEffect>(HomeUiState()),
+    HomeInteractionListener {
     override val TAG: String = this::class.java.simpleName
 
     init {
         getAllNewsArticle()
+        getAllNewsByDate()
     }
 
     override fun getAllNewsArticle() {
@@ -28,6 +35,16 @@ HomeInteractionListener {
         )
     }
 
+    override fun getAllNewsByDate() {
+        _state.update { it.copy(isLoading = true, isError = false) }
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        tryToExecute(
+            { getAllNewsByDateUseCase(date = currentDate) },
+            ::onGetAllNewsByDateSuccess,
+            ::onGetAllNewsByDateError
+        )
+    }
+
     private fun onGetAllNewsSuccess(news: List<NewsArticle>?) {
         if (!news.isNullOrEmpty()) {
             _state.update {
@@ -36,8 +53,24 @@ HomeInteractionListener {
                     news = news.map { newsArticle -> newsArticle.toNewsUiState() }
                 )
             }
+            Log.d("TAG", "Data fetched successfully")
         }
+    }
+
+    private fun onGetAllNewsByDateSuccess(currentNews: List<NewsArticle>?) {
+        if (!currentNews.isNullOrEmpty()) {
+            _state.update {
+                it.copy(
+                    isLoading = false,
+                    currentNews = currentNews.map { newsArticle -> newsArticle.toNewsUiState() }
+                )
+            }
+            Log.d("TAG1", "Current Data fetched successfully")
+        } else{
+            Log.d("TAG2", "Can't get Current data")
+
         }
+    }
 
     private fun onGetAllNewsError(error: ErrorHandler) {
         _state.update { it.copy(isLoading = false, error = error) }
@@ -45,4 +78,28 @@ HomeInteractionListener {
             _state.update { it.copy(isError = true) }
         }
     }
+
+    private fun onGetAllNewsByDateError(error: ErrorHandler) {
+        _state.update { it.copy(isLoading = false, error = error) }
+        if (error is ErrorHandler.NoConnection) {
+            _state.update { it.copy(isError = true) }
+        }
+    }
+
+    override fun onClickPagerItem() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClickBreakingNews() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClickShowMore() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClickRecommendedNews() {
+        TODO("Not yet implemented")
+    }
+
 }
