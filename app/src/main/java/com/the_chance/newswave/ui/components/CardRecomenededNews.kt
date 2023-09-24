@@ -36,8 +36,8 @@ import com.the_chance.newswave.ui.theme.space8
 @Composable
 fun RecommendedNews(
     currentNews: List<NewsUiState>,
-    onClickRecommendedNewsCard: () -> Unit,
-    onClickShowMore: () -> Unit,
+    onClickRecommendedNewsCard: () -> Unit = {},
+    onClickShowMore: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val limitedNews = currentNews.take(5)
@@ -48,7 +48,7 @@ fun RecommendedNews(
         ItemLabel(
             label = stringResource(R.string.recommended),
             modifier = modifier.padding(top = space16),
-            onClickShowMore = { onClickShowMore }
+            onClickShowMore = onClickShowMore
         )
 
         LazyRow(
@@ -62,7 +62,7 @@ fun RecommendedNews(
                     newsTime = news.publishedAt,
                     newsCategory = news.category,
                     author = news.author,
-                    onClickRecommendedNewsCard = { onClickRecommendedNewsCard }
+                    onClickRecommendedNewsCard = onClickRecommendedNewsCard
                 )
             }
         }
@@ -103,7 +103,6 @@ fun RecommendedNewsCard(
             CustomChip(
                 state = true,
                 text = newsCategory,
-                height = 28.dp,
                 onClick = {}
             )
         }

@@ -35,11 +35,11 @@ import com.the_chance.newswave.ui.theme.white
 @Composable
 fun BreakingNews(
     news: List<NewsUiState>,
-    onClickBreakingNewsCard: () -> Unit,
-    onClickShowMore: () -> Unit,
+    onClickBreakingNewsCard: () -> Unit = {},
+    onClickShowMore: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    val limitedNews = news.take(10)
+    val limitedNews = news.take(6)
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space8),
@@ -58,7 +58,7 @@ fun BreakingNews(
                     modifier = Modifier.animateItemPlacement(),
                     imageNewsUrl = news.image,
                     title = news.title,
-                    onClickNewsCard = { onClickBreakingNewsCard }
+                    onClickNewsCard = onClickBreakingNewsCard
                 )
             }
         }

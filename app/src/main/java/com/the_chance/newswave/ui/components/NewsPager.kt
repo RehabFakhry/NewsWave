@@ -40,7 +40,6 @@ import com.the_chance.newswave.ui.theme.space8
 fun NewsPager(
     news: List<NewsUiState>,
     pagerState: PagerState,
-    onClickPagerItem: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -63,7 +62,6 @@ fun NewsPager(
                     .clip(shape = RoundedCornerShape(space24))
                     .background(black16)
                     .height(heightItemNewsCard)
-                    .clickable(onClick = { onClickPagerItem }),
             )
         }
         HorizontalPagerIndicator(

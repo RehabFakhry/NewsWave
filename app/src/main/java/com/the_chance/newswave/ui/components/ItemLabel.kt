@@ -1,5 +1,6 @@
 package com.the_chance.newswave.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -46,7 +47,7 @@ fun ItemLabel(
 
         Text(
             text = stringResource(R.string.show_more),
-            modifier = Modifier.padding(bottom = space2),
+            modifier = Modifier.padding(bottom = space2).clickable{ onClickShowMore },
             color = Primary,
             style = MaterialTheme.typography.bodySmall,
         )
