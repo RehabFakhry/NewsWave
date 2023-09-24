@@ -10,6 +10,7 @@ import com.the_chance.newswave.ui.features.onboarding.onboardingRoute
 import com.the_chance.newswave.ui.features.profile.profileRoute
 import com.the_chance.newswave.ui.features.saved_news.savedNewsRoute
 import com.the_chance.newswave.ui.features.search.searchRoute
+import com.the_chance.newswave.ui.features.see_all_news.seeAllNewsRoute
 import com.the_chance.newswave.ui.features.signup.signupRoute
 
 @Composable
@@ -24,6 +25,7 @@ fun MainNavGraph() {
         loginRoute()
         signupRoute()
         homeRoute()
+        seeAllNewsRoute()
         discoverRoute()
         searchRoute()
         savedNewsRoute()
