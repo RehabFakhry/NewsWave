@@ -13,23 +13,23 @@ data class NewsDto(
         @SerializedName("author")
         val author: String?,
         @SerializedName("category")
-        val category: String,
+        val category: String?,
         @SerializedName("country")
-        val country: String,
+        val country: String?,
         @SerializedName("description")
-        val description: String,
+        val description: String?,
         @SerializedName("image")
         val image: String?,
         @SerializedName("language")
-        val language: String,
+        val language: String?,
         @SerializedName("published_at")
-        val publishedAt: String,
+        val publishedAt: String?,
         @SerializedName("source")
-        val source: String,
+        val source: String?,
         @SerializedName("title")
-        val title: String,
+        val title: String?,
         @SerializedName("url")
-        val url: String
+        val url: String?
     )
 
     data class Pagination(
