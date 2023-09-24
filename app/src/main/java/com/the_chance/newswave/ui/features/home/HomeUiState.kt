@@ -3,6 +3,7 @@ package com.the_chance.newswave.ui.features.home
 import android.annotation.SuppressLint
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.utill.ErrorHandler
+import com.the_chance.newswave.R
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -13,7 +14,7 @@ data class HomeUiState(
     val error: ErrorHandler? = null,
     val news: List<NewsUiState> = emptyList(),
     val currentNews: List<NewsUiState> = emptyList(),
-    ) {
+) {
     val shuffledNews = news.filter { !it.image.isNullOrEmpty() }.shuffled().take(3)
 }
 
@@ -32,21 +33,35 @@ data class NewsUiState(
 
 fun NewsArticle.toNewsUiState(): NewsUiState {
     return NewsUiState(
-        author = author?: "",
-        title = title,
-        description = description,
-        url = url,
-        source = source,
-        image = image?: "",
-        category = category,
-        language = language,
-        country = country,
-        publishedAt = publishedAt,
+        author = author ?: "",
+        title = title ?: "",
+        description = description ?: "",
+        url = url ?: "",
+        source = source ?: "",
+        image = image ?: "",
+        category = category ?: "",
+        language = language ?: "",
+        country = country ?: "",
+        publishedAt = publishedAt ?: "",
     )
 }
 
-fun HomeUiState.showHome() = news.isNotEmpty()
+val worldNewsImages: List<Int> = listOf(
+    R.drawable.egypt_flag,
+    R.drawable.canada_flag,
+    R.drawable.barzil_flag,
+    R.drawable.australia_flag,
+    R.drawable.germany_flag,
+    R.drawable.frence_flag,
+    R.drawable.greece_flag,
+    R.drawable.italy_flag,
+    R.drawable.morocco_flag,
+    R.drawable.hong_kong_flag,
 
+    )
+
+
+fun HomeUiState.showHome() = news.isNotEmpty() && currentNews.isNotEmpty()
 
 @SuppressLint("SimpleDateFormat")
 fun Date.toDateFormat(): String {
