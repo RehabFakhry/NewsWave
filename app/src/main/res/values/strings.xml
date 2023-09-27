@@ -29,5 +29,20 @@
     <string name="show_more">Show More</string>
     <string name="recommended">Recommended</string>
     <string name="worldnews">WorldNews</string>
+    <string name="news_from_all_around_the_world">news from all around the world</string>
+    <string name="search">Search</string>
+    <string name="news_image">News Image</string>
+    <string name="location_icon">location Icon</string>
+    <string name="general">general</string>
+    <string name="business">business</string>
+    <string name="entertainment">entertainment</string>
+    <string name="health">health</string>
+    <string name="science">science</string>
+    <string name="technology">technology</string>
+    <string name="sports">sports</string>
+    <string name="there_is_no_result">there is no result</string>
+    <string name="please_try_again_with_another_words">Please try again with another words</string>
+    <string name="there_is_no_connection">there is no connection</string>
+    <string name="please_check_your_network_and_try_later">Please check your network and try later</string>
 
 </resources>
