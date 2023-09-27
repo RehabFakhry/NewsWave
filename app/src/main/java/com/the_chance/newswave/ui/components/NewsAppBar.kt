@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.components.modifier
+package com.the_chance.newswave.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

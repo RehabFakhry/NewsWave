@@ -101,7 +101,6 @@ fun RecommendedNewsCard(
             contentAlignment = Alignment.TopEnd
         ) {
             CustomChip(
-                state = true,
                 text = newsCategory,
                 onClick = {}
             )

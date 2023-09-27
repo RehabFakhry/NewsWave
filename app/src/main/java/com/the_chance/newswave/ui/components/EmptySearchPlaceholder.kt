@@ -29,7 +29,7 @@ import com.the_chance.newswave.ui.theme.space56
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun EmptyProductsPlaceholder(
+fun EmptySearchPlaceholder(
     state: Boolean,
     title: String,
     subtitle: String,
@@ -76,6 +76,6 @@ fun EmptyProductsPlaceholder(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewEmptyProductsScaffold(){
-    EmptyProductsPlaceholder(
+    EmptySearchPlaceholder(
         true, "there is no result" , "Please try again with another words", 10 )
 }

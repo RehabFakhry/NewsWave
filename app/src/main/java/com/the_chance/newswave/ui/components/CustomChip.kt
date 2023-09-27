@@ -22,12 +22,15 @@ import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.the_chance.newswave.ui.theme.NewsWaveTheme
 import com.the_chance.newswave.ui.theme.black37
+import com.the_chance.newswave.ui.theme.black60
 import com.the_chance.newswave.ui.theme.fontSize14
+import com.the_chance.newswave.ui.theme.secondary
 import com.the_chance.newswave.ui.theme.space2
 import com.the_chance.newswave.ui.theme.space4
 import com.the_chance.newswave.ui.theme.white
@@ -35,7 +38,7 @@ import com.the_chance.newswave.ui.theme.white
 @Composable
 fun CustomChip(
     modifier: Modifier = Modifier,
-    state: Boolean,
+    isSelected: Boolean = false,
     text: String,
     width: Dp = 70.dp,
     height: Dp = 32.dp,
@@ -53,20 +56,23 @@ fun CustomChip(
             ) {
                 onClick()
             },
-        colors = if (state) CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
-        else CardDefaults.cardColors(Transparent),
-        border = if (state) BorderStroke(width = 0.dp, color = Transparent)
-        else BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.onTertiaryContainer),
+        colors = if (isSelected) CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
+        else CardDefaults.cardColors(MaterialTheme.colorScheme.onSecondary),
+        border = if (isSelected) BorderStroke(width = 0.dp, color = secondary,
+        )
+        else BorderStroke(width = 1.dp, color = Transparent),
         shape = CircleShape
     ) {
 
         Column(modifier = modifier.align(Alignment.CenterHorizontally)) {
             Text(
-                modifier = Modifier.padding(start = space4),
+                modifier = Modifier.padding(horizontal = space4),
                 textAlign = TextAlign.Center,
                 fontSize = fontSize14,
                 text = text,
-                color = if (state) white else black37,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = if (isSelected) white else black60,
                 style = style.copy(baselineShift = BaselineShift(0.3f))
             )
         }
@@ -80,9 +86,10 @@ fun PreviewCustomChip() {
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            CustomChip(state = true, text = "General", onClick = { })
-            CustomChip(state = false, text = "Business", onClick = { })
-            CustomChip(state = false, text = "Healthy", onClick = { })
+            CustomChip(isSelected = true, text = "General", onClick = { })
+            CustomChip(isSelected = false, text = "Business", onClick = { })
+            CustomChip(isSelected = false, text = "Healthy", onClick = { })
+            CustomChip(isSelected = false, text = "entrainment", onClick = { })
         }
     }
 }
