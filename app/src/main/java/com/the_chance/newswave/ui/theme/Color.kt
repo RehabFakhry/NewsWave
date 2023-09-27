@@ -3,6 +3,7 @@ package com.the_chance.newswave.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val Primary = Color(0xFF3E59B7)
+val secondary = Color(0x4D3E59B7)
 
 val error = Color(0xFFFF4E33)
 val success = Color(0xFF00E82D)
