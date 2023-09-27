@@ -3,7 +3,7 @@ package com.the_chance.data.source.remote.mapper
 import com.the_chance.data.source.remote.models.NewsDto
 import com.the_chance.domain.model.NewsArticle
 
-fun NewsDto.Data.toNewsArticleEntity() = NewsArticle(
+fun NewsDto.Data.toNewsArticle() = NewsArticle(
     author = author?: "",
     title = title?: "" ,
     description = description?: "" ,

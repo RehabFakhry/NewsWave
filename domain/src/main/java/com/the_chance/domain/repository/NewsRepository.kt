@@ -7,4 +7,8 @@ interface NewsRepository {
 
     suspend fun getAllNewsByDate(date: String): List<NewsArticle>?
 
+    suspend fun getAllNewsByCategory(category: String): List<NewsArticle>?
+
+    suspend fun searchForNewsArticle(query: String): List<NewsArticle>?
+
 }

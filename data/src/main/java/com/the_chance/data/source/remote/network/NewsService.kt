@@ -12,4 +12,10 @@ interface NewsService {
     @GET("news")
     suspend fun getNewsArticleByDate(@Query("date") date: String): Response<NewsDto>
 
+    @GET("news")
+    suspend fun getNewsArticleByCategory(@Query("categories") category: String): Response<NewsDto>
+
+    @GET("news")
+    suspend fun searchForNewsArticle(@Query("search") query: String): Response<NewsDto>
+
 }
