@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,14 +35,15 @@ fun DiscoverAppBar(
         Card(
             modifier = modifier
                 .padding(top = space16)
-                .align(Alignment.Top)
-                .background(Color.Transparent),
+                .align(Alignment.Top),
+            colors = CardDefaults.cardColors(Color.Transparent)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.image_logo),
                 contentDescription = "logo image",
                 modifier = Modifier
                     .size(48.dp)
+                    .background(Color.Transparent)
             )
         }
 
