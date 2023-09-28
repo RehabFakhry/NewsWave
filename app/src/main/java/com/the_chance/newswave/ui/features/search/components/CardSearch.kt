@@ -5,40 +5,31 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.the_chance.newswave.R
 import com.the_chance.newswave.ui.components.ImageNetwork
 import com.the_chance.newswave.ui.components.modifier.overlayBottomToTop
 import com.the_chance.newswave.ui.theme.Shapes
-import com.the_chance.newswave.ui.theme.space16
 import com.the_chance.newswave.ui.theme.space2
-import com.the_chance.newswave.ui.theme.space4
 import com.the_chance.newswave.ui.theme.space8
-import com.the_chance.newswave.ui.theme.white
 
 @Composable
 fun CardSearch(
     imageUrl: String,
     newsTitle: String,
     author: String,
-    country: String,
     onClickCard: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -89,7 +80,6 @@ fun SearchCardPreview() {
         imageUrl = "https://img.freepik.com/free-photo/mid-century-modern-living-room-interior-design-with-monstera-tree_53876-129804.jpg",
         newsTitle = "To Kill a Mockingbird",
         author = "josef",
-        country = "us",
         onClickCard = {}
     )
 }
