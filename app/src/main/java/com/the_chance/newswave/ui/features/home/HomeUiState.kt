@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.utill.ErrorHandler
 import com.the_chance.newswave.R
+import com.the_chance.newswave.ui.features.discover.ChipSelectedState
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -12,8 +13,10 @@ data class HomeUiState(
     val isLoading: Boolean = false,
     val isError: Boolean = false,
     val error: ErrorHandler? = null,
+    val isConnectionError: Boolean = false,
     val news: List<NewsUiState> = emptyList(),
     val currentNews: List<NewsUiState> = emptyList(),
+    val chipSelected: ChipSelectedState = ChipSelectedState.GENERAL
 ) {
     val shuffledNews = news.filter { !it.image.isNullOrEmpty() }.shuffled().take(3)
 }
@@ -57,9 +60,7 @@ val worldNewsImages: List<Int> = listOf(
     R.drawable.italy_flag,
     R.drawable.morocco_flag,
     R.drawable.hong_kong_flag,
-
     )
-
 
 fun HomeUiState.showHome() = news.isNotEmpty() && currentNews.isNotEmpty()
 

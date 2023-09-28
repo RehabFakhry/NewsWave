@@ -1,14 +1,11 @@
 package com.the_chance.newswave.ui.features.home
 
 import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.usecase.GetAllNewsByDateUseCase
 import com.the_chance.domain.usecase.GetAllNewsUseCase
 import com.the_chance.domain.utill.ErrorHandler
 import com.the_chance.newswave.ui.base.BaseViewModel
-import com.the_chance.newswave.ui.features.see_all_news.SeeAllNewsScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import java.text.SimpleDateFormat
@@ -24,18 +21,9 @@ class NewsViewModel @Inject constructor(
     HomeInteractionListener {
     override val TAG: String = this::class.java.simpleName
 
-    private val _seeAllNewsScreenState = mutableStateOf<SeeAllNewsScreenState>(
-        SeeAllNewsScreenState.BreakingNews
-    )
-    val seeAllNewsScreenState: MutableState<SeeAllNewsScreenState> = _seeAllNewsScreenState
-
     init {
         getAllNewsArticle()
         getAllNewsByDate()
-    }
-
-    fun setSeeAllNewsScreenState(screenState: SeeAllNewsScreenState) {
-        _seeAllNewsScreenState.value = screenState
     }
 
     override fun getAllNewsArticle() {
@@ -59,10 +47,11 @@ class NewsViewModel @Inject constructor(
 
     private fun onGetAllNewsSuccess(news: List<NewsArticle>?) {
         if (!news.isNullOrEmpty()) {
+            val newsWithImage = news.filter { !it.image.isNullOrEmpty() }
             _state.update {
                 it.copy(
                     isLoading = false,
-                    news = news.map { newsArticle -> newsArticle.toNewsUiState() }
+                    news = newsWithImage.map { newsArticle -> newsArticle.toNewsUiState() }
                 )
             }
             Log.d("TAG", "Data fetched successfully")
@@ -71,15 +60,13 @@ class NewsViewModel @Inject constructor(
 
     private fun onGetAllNewsByDateSuccess(currentNews: List<NewsArticle>?) {
         if (!currentNews.isNullOrEmpty()) {
+            val currentNewsWithImage = currentNews.filter { !it.image.isNullOrEmpty() }
             _state.update {
                 it.copy(
                     isLoading = false,
-                    currentNews = currentNews.map { newsArticle -> newsArticle.toNewsUiState() }
+                    currentNews = currentNewsWithImage.map { newsArticle -> newsArticle.toNewsUiState() }
                 )
             }
-            Log.d("TAG1", "Current Data fetched successfully")
-        } else{
-            Log.d("TAG2", "Can't get Current data")
         }
     }
 

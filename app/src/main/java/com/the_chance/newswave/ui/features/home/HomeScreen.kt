@@ -25,7 +25,7 @@ import com.the_chance.newswave.ui.components.Loading
 import com.the_chance.newswave.ui.components.NewsPager
 import com.the_chance.newswave.ui.components.RecommendedNews
 import com.the_chance.newswave.ui.components.WorldNews
-import com.the_chance.newswave.ui.components.modifier.NewsAppBar
+import com.the_chance.newswave.ui.components.NewsAppBar
 import com.the_chance.newswave.ui.features.search.navigateToSearchScreen
 import com.the_chance.newswave.ui.features.see_all_news.navigateToSeeAllNewsScreen
 import com.the_chance.newswave.ui.theme.space16
@@ -84,7 +84,7 @@ fun HomeContent(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                top = 108.dp, bottom = space16, start = space16, end = space16
+                top = 108.dp, start = space16, end = space16
             ),
         contentPadding = PaddingValues(bottom = space16)
     ) {
