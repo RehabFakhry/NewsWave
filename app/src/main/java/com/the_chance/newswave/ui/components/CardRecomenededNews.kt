@@ -28,7 +28,6 @@ import com.the_chance.newswave.ui.components.modifier.fullOverlay
 import com.the_chance.newswave.ui.features.home.NewsUiState
 import com.the_chance.newswave.ui.theme.fontSize14
 import com.the_chance.newswave.ui.theme.space16
-import com.the_chance.newswave.ui.theme.space2
 import com.the_chance.newswave.ui.theme.space4
 import com.the_chance.newswave.ui.theme.space6
 import com.the_chance.newswave.ui.theme.space8
