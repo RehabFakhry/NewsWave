@@ -1,13 +1,14 @@
 package com.the_chance.newswave.ui.features.home
 
-import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.utill.ErrorHandler
 import com.the_chance.newswave.R
 import com.the_chance.newswave.ui.features.discover.ChipSelectedState
-import java.text.SimpleDateFormat
-import java.util.Date
-
+import java.time.Duration
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 data class HomeUiState(
     val isLoading: Boolean = false,
@@ -64,8 +65,16 @@ val worldNewsImages: List<Int> = listOf(
 
 fun HomeUiState.showHome() = news.isNotEmpty() && currentNews.isNotEmpty()
 
-@SuppressLint("SimpleDateFormat")
-fun Date.toDateFormat(): String {
-    val dateFormat = SimpleDateFormat("dd MMM  HH:mm")
-    return dateFormat.format(this)
+@RequiresApi(Build.VERSION_CODES.O)
+fun String.formatPublishedDate(): String {
+    val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+    val publishedDateTime = LocalDateTime.parse(this, dateFormatter)
+    val now = LocalDateTime.now()
+    val daysAgo = Duration.between(publishedDateTime, now).toDays()
+
+    return when {
+        daysAgo < 1 -> "Today"
+        daysAgo == 1L -> "Yesterday"
+        else -> "$daysAgo days ago"
+    }
 }
