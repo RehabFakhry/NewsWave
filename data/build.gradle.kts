@@ -5,6 +5,8 @@ plugins {
     id(Plugins.SERIALIZATION)
     kotlin(Plugins.KOTLIN_ANDROID)
     kotlin(Plugins.KOTLIN_KAPT)
+//    id ("com.google.gms.google-services")
+
 }
 
 val localProps = Properties()
@@ -57,4 +59,8 @@ dependencies {
     kapt(Dependencies.hiltCompiler)
 //    implementation(Dependencies.hiltCompiler)
     implementation(Dependencies.daggerAndroid)
+//    implementation ("com.google.firebase:firebase-auth:22.1.1")
+//    implementation ("com.google.firebase:firebase-auth-ktx:22.1.1")
+//    implementation ("com.google.firebase:firebase-auth:22.1.1")
+
 }

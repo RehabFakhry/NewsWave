@@ -2,7 +2,6 @@ package com.the_chance.newswave.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -62,7 +61,7 @@ fun FilledButton(
 }
 
 @Composable
-fun Text(
+fun TextReuzable(
     text: String,
     textSize: TextUnit = 24.sp,
     style: TextStyle = MaterialTheme.typography.bodyMedium,

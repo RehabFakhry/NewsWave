@@ -12,7 +12,6 @@ abstract class BaseRepository {
         try {
             val response = function()
             return if (response.isSuccessful) {
-//                Log.d("tag", "Repository done correctly")
                 response.body()?: throw NotFoundException()
             } else {
                 Log.d("tag", "repository failed")

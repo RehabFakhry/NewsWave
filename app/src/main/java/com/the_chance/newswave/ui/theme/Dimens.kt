@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 val zero: Dp = 0.dp
+val space1: Dp = 1.dp
 val space2: Dp = 2.dp
 val space4: Dp = 4.dp
 val space6: Dp = 6.dp
@@ -32,14 +33,15 @@ val fontSize14: TextUnit = 14.sp
 
 val strokeNormal: Dp = 1.dp
 
-val lottieLoading: Dp = 100.dp
+val lottieLoading: Dp = 250.dp
 val itemCardImage: Dp = 88.dp
 
 
 val smallButton: Dp = 32.dp
 val heightPrimaryButton: Dp = 48.dp
 val heightOutlinedTextField: Dp = 64.dp
-val heightItemNewsCard: Dp = 164.dp
+val heightItemNewsCard: Dp = 192.dp
+val icon24: Dp = 24.dp
 val icon32: Dp = 32.dp
 
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "281258953951",
+    "project_id": "newswave-8f531",
+    "storage_bucket": "newswave-8f531.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281258953951:android:bc585621f8e5956d5b2d6a",
+        "android_client_info": {
+          "package_name": "com.the_chance.newswave"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEec197LBRvpi1W26WC2lH_Up0VXvByjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

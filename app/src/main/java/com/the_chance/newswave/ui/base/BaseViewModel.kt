@@ -34,6 +34,14 @@ abstract class BaseViewModel<T, E>(initialState: T) : ViewModel() {
 
     private var job: Job? = null
 
+    protected fun <T : BaseUiEffect> effectActionExecutor(
+        _effect: MutableSharedFlow<T>,
+        effect: T,
+    ) {
+        viewModelScope.launch {
+            _effect.emit(effect)
+        }
+    }
 
     protected fun <T> tryToExecute(
         function: suspend () -> T,
@@ -44,10 +52,10 @@ abstract class BaseViewModel<T, E>(initialState: T) : ViewModel() {
         viewModelScope.launch(dispatcher) {
             try {
                 val result = function()
-//                log("RRR:$result ")
+                log("RRR:$result ")
                 onSuccess(result)
             } catch (exception: Exception) {
-                log("tryToExecute error Exception: ${exception}")
+                log("tryToExecute error Exception: $exception")
                 onError(ErrorHandler.NotFound)
             }
         }

@@ -16,7 +16,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.the_chance.newswave.R
 import com.the_chance.newswave.ui.components.FilledButton
-import com.the_chance.newswave.ui.components.Text
+import com.the_chance.newswave.ui.components.TextReuzable
+import com.the_chance.newswave.ui.features.home.navigateToHomeScreen
+import com.the_chance.newswave.ui.navigation.LocalNavigationProvider
 import com.the_chance.newswave.ui.theme.fontSize20
 import com.the_chance.newswave.ui.theme.fontSize30
 import com.the_chance.newswave.ui.theme.space16
@@ -24,7 +26,7 @@ import com.the_chance.newswave.ui.theme.space8
 
 @Composable
 fun OnboardingScreen() {
-//    val navController = LocalNavigationProvider.current
+    val navController = LocalNavigationProvider.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -32,7 +34,7 @@ fun OnboardingScreen() {
         Image(
             painter = painterResource(id = R.drawable.image_onboarding),
             contentDescription = stringResource(R.string.onboarding_image),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize(),
         )
 
@@ -42,7 +44,7 @@ fun OnboardingScreen() {
                 .fillMaxWidth()
                 .padding(horizontal = space16)
         ) {
-            Text(
+            TextReuzable(
                 text = stringResource(R.string.stay_informed_with_news_waves),
                 textSize = fontSize30,
                 modifier = Modifier
@@ -51,7 +53,7 @@ fun OnboardingScreen() {
                         horizontal = space16 ,
                         vertical = space8)
             )
-           Text(
+           TextReuzable(
                text = stringResource(R.string.get_ready_to_dive_into_the_headlines),
                textSize = fontSize20,
                modifier = Modifier
@@ -59,7 +61,7 @@ fun OnboardingScreen() {
                    .padding(horizontal = space16)
            )
            FilledButton(
-                onClick = {},
+                onClick = {navController.navigateToHomeScreen()},
                 label = stringResource(R.string.get_started),
                 modifier = Modifier.padding(vertical = 32.dp, horizontal = 16.dp),
             )
@@ -72,4 +74,3 @@ fun OnboardingScreen() {
 fun PreviewOnboarding(){
     OnboardingScreen()
 }
-

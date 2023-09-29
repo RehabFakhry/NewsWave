@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class NewsDto(
     @SerializedName("data")
-    val `data`: List<Data?>?,
+    val `data`: List<Data>,
     @SerializedName("pagination")
-    val pagination: Pagination?
+    val pagination: Pagination
 ) {
     data class Data(
         @SerializedName("author")
@@ -34,12 +34,12 @@ data class NewsDto(
 
     data class Pagination(
         @SerializedName("count")
-        val count: Int?,
+        val count: Int,
         @SerializedName("limit")
-        val limit: Int?,
+        val limit: Int,
         @SerializedName("offset")
-        val offset: Int?,
+        val offset: Int,
         @SerializedName("total")
-        val total: Int?
+        val total: Int
     )
 }
