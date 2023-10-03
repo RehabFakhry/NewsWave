@@ -1,35 +1,34 @@
 plugins {
-    id(Plugins.ANDROID_APPLICATION)
+    id("com.android.library")
+//    id("org.jetbrains.kotlin.android")
+//    id(Plugins.ANDROID_APPLICATION)
     kotlin(Plugins.KOTLIN_ANDROID)
     kotlin(Plugins.KOTLIN_KAPT)
     id(Plugins.HILT_LIBRARY)
     id(Plugins.NAVIGATION_ARGS)
-    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.the_chance.newswave"
-    compileSdk = ConfigData.COMPILE_SDK_VERSION
+    namespace = "com.the_chance.ui"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.the_chance.newswave"
-        minSdk = ConfigData.MIN_SDK_VERSION
-        targetSdk = ConfigData.TARGET_SDK_VERSION
-        versionCode = ConfigData.VERSION_CODE
-        versionName = ConfigData.VERSION_NAME
+        minSdk = 26
 
-        testInstrumentationRunner = ConfigData.TEST_INSTRUMENTATION_RUNNER
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName(BuildType.RELEASE) {
-            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
     compileOptions {
         sourceCompatibility = ConfigData.JAVA_VERSIONS_CODE
         targetCompatibility = ConfigData.JAVA_VERSIONS_CODE
@@ -37,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = ConfigData.JAVA_VERSIONS_CODE.toString()
     }
+
     buildFeatures {
         compose = true
     }
@@ -44,19 +44,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-//            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
-    }
 }
 
 dependencies {
 
     implementation(project(BuildModules.DOMAIN))
     implementation(project(BuildModules.DATA))
-    implementation(project(BuildModules.UI))
 
     Dependencies.uiDependencies.forEach { implementation(it) }
     Dependencies.retrofitDependencies.forEach { implementation(it) }
@@ -71,7 +64,7 @@ dependencies {
     //navigation
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("androidx.navigation:navigation-compose:2.6.0")
-    androidTestImplementation(platform(Dependencies.composePlatformBomAndroidTest))
+    androidTestImplementation(Dependencies.composePlatformBomAndroidTest)
     Dependencies.androidTestDependencies.forEach { androidTestImplementation(it) }
     debugImplementation(Dependencies.composeUiDependency)
     Dependencies.debugmplementation.forEach { debugImplementation(it)}

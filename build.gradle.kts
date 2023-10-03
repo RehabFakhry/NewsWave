@@ -19,5 +19,4 @@ plugins {
     kotlin(Plugins.PLUGIN_SERIALIZATION) version PluginsVersions.PLUGIN_SERIALIZATION
     id(Plugins.HILT_LIBRARY) version PluginsVersions.HILT_LIBRARY apply false
     kotlin("kapt") version "1.9.0"
-
 }

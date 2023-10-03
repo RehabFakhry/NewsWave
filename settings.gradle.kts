@@ -14,10 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "NewsWave"
-include(
-    ":app",
-    ":ui",
-)
+include(":app")
 include(":domain")
-
 include(":data")
+include(":ui")
