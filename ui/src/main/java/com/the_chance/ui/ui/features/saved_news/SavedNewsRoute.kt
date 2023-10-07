@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.features.saved_news
+package com.the_chance.ui.ui.features.saved_news
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
