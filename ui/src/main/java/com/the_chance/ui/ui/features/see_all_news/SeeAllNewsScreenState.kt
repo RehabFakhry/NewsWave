@@ -1,4 +1,4 @@
-package com.the_chance.newswave.ui.features.see_all_news
+package com.the_chance.ui.ui.features.see_all_news
 
 sealed class SeeAllNewsScreenState{
     data object BreakingNews : SeeAllNewsScreenState()
