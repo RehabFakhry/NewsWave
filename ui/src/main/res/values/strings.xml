@@ -44,5 +44,7 @@
     <string name="please_try_again_with_another_words">Please try again with another words</string>
     <string name="there_is_no_connection">there is no connection</string>
     <string name="please_check_your_network_and_try_later">Please check your network and try later</string>
+    <string name="network_error">Network Error\n</string>
+    <string name="no_search_result">No Search Result</string>
 
 </resources>

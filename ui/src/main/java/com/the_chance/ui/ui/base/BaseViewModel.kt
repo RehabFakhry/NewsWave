@@ -1,17 +1,15 @@
-package com.the_chance.newswave.ui.base
+package com.the_chance.ui.ui.base
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.the_chance.domain.utill.AuthenticationException
 import com.the_chance.domain.utill.ErrorHandler
-import com.the_chance.domain.utill.GeneralException
-import com.the_chance.domain.utill.handelAuthenticationException
-import com.the_chance.domain.utill.handelGeneralException
+import com.the_chance.domain.utill.NetworkException
+import com.the_chance.domain.utill.handelNetworkException
+import com.the_chance.newswave.ui.base.BaseUiEffect
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -50,13 +48,27 @@ abstract class BaseViewModel<T, E>(initialState: T) : ViewModel() {
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
     ) {
         viewModelScope.launch(dispatcher) {
-            try {
+            handleException(
+                onError
+            ){
                 val result = function()
-                log("RRR:$result ")
+                log("tryToExecute: $result ")
                 onSuccess(result)
-            } catch (exception: Exception) {
-                log("tryToExecute error Exception: $exception")
-                onError(ErrorHandler.NotFound)
+            }
+        }
+    }
+
+    private suspend fun <T> handleException(
+        onError: (t: ErrorHandler) -> Unit, action: suspend () -> T
+    ) {
+        try {
+            action()
+        } catch (exception: Exception) {
+            log("tryToExecute error: $exception")
+            when (exception) {
+                is NetworkException -> handelNetworkException(exception, onError)
+                is IOException -> onError(ErrorHandler.NoConnection)
+                else -> onError(ErrorHandler.NotFound)
             }
         }
     }
