@@ -4,7 +4,7 @@ import com.the_chance.newswave.ui.base.BaseUiEffect
 
 sealed class SearchUiEffect: BaseUiEffect {
 
-    data object NavigateToNewsDetailsScreenEffect: SearchUiEffect()
+    data object OnClickNewsItemEffect: SearchUiEffect()
     data object OnClickBackEffect: SearchUiEffect()
 
 }

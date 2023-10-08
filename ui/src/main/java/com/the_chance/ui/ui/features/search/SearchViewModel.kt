@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.usecase.SearchForNewsArticleUseCase
 import com.the_chance.domain.utill.ErrorHandler
-import com.the_chance.newswave.ui.base.BaseViewModel
+import com.the_chance.ui.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow

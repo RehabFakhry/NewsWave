@@ -1,11 +1,8 @@
 package com.the_chance.ui.ui.features.search.components
 
-
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,10 +17,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.the_chance.newswave.ui.components.modifier.overlayBottomToTop
-import com.the_chance.ui.ui.theme.Shapes
-import com.the_chance.ui.ui.theme.space2
-import com.the_chance.ui.ui.theme.space8
 import com.the_chance.ui.ui.components.ImageNetwork
+import com.the_chance.ui.ui.theme.Shapes
+import com.the_chance.ui.ui.theme.space4
+import com.the_chance.ui.ui.theme.space8
 
 @Composable
 fun CardSearch(
@@ -35,25 +32,23 @@ fun CardSearch(
 ) {
     Box(
         modifier = modifier
-            .height(240.dp)
-            .width(160.dp)
-            .clip(MaterialTheme.shapes.medium)
+            .height(150.dp)
+            .width(140.dp)
             .clickable { onClickCard() }
+            .clip(MaterialTheme.shapes.medium)
     ) {
         ImageNetwork(
             imageUrl = imageUrl,
             modifier = Modifier
                 .clip(shape = Shapes.medium)
                 .overlayBottomToTop()
-                .size(240.dp),
-        )
+                .size(150.dp),
+            )
 
         Column(
             modifier = Modifier
-                .fillMaxWidth()
                 .align(Alignment.BottomStart)
-                .padding(start = space8, bottom = space8, end = space8),
-            verticalArrangement = Arrangement.spacedBy(space2)
+                .padding(start = space8, bottom = space4, end = space8),
         ) {
             Text(
                 text = newsTitle,
