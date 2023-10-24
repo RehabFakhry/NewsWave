@@ -70,4 +70,5 @@ dependencies {
     Dependencies.debugmplementation.forEach { debugImplementation(it)}
     kapt(Dependencies.hiltCompiler)
     implementation(Dependencies.hiltDependency)
+    implementation(Dependencies.splashDependency)
 }
