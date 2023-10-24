@@ -16,21 +16,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.the_chance.newswave.ui.features.discover.ChipSelectedState
-import com.the_chance.newswave.ui.features.discover.DiscoverInteractionListener
-import com.the_chance.newswave.ui.features.discover.DiscoverUiEffect
-import com.the_chance.newswave.ui.features.discover.DiscoverUiState
-import com.the_chance.newswave.ui.features.discover.DiscoverViewModel
-import com.the_chance.newswave.ui.features.discover.business
-import com.the_chance.newswave.ui.features.discover.entertainment
-import com.the_chance.newswave.ui.features.discover.general
-import com.the_chance.newswave.ui.features.discover.health
-import com.the_chance.newswave.ui.features.discover.science
-import com.the_chance.newswave.ui.features.discover.showDiscover
-import com.the_chance.newswave.ui.features.discover.sports
-import com.the_chance.newswave.ui.features.discover.technology
 import com.the_chance.ui.R
 import com.the_chance.ui.ui.components.BreakingNewsForDiscover
+import com.the_chance.ui.ui.components.ConnectionErrorPlaceholder
 import com.the_chance.ui.ui.components.ContentVisibility
 import com.the_chance.ui.ui.components.EventHandler
 import com.the_chance.ui.ui.components.Loading
@@ -40,12 +28,12 @@ import com.the_chance.ui.ui.features.home.component.SearchBar
 import com.the_chance.ui.ui.features.news_details.navigateToNewsDetailsScreen
 import com.the_chance.ui.ui.features.search.navigateToSearchScreen
 import com.the_chance.ui.ui.theme.space16
+import com.the_chance.ui.ui.theme.space24
 import com.the_chance.ui.ui.theme.space8
 
 @Composable
 fun DiscoverScreen(
     discoverViewModel: DiscoverViewModel = hiltViewModel()
-
 ) {
     val state by discoverViewModel.state.collectAsState()
 
@@ -53,16 +41,16 @@ fun DiscoverScreen(
         effects = discoverViewModel.effect,
         handleEffect = { effect, navController ->
             when (effect) {
-                DiscoverUiEffect.NavigateToSearchScreenEffect ->
+                is DiscoverUiEffect.ClickSearchIconEffect ->
                     navController.navigateToSearchScreen()
-                DiscoverUiEffect.NavigateToNewsDetailsEffect ->
-                    navController.navigateToNewsDetailsScreen(state.newsItem)
-
-                else -> {}
+                is DiscoverUiEffect.ClickNewsItemEffect ->
+                    navController.navigateToNewsDetailsScreen(effect.title)
             }
         })
 
-    Loading( state.isLoading && state.news.isEmpty() )
+    Loading(state = state.isLoading && state.news.isEmpty())
+    ConnectionErrorPlaceholder(state = state.isConnectionError)
+
     ContentVisibility(state = state.showDiscover()) {
         DiscoverContent(state = state, listener = discoverViewModel, viewModel = discoverViewModel)
     }
@@ -75,20 +63,21 @@ fun DiscoverContent(
     modifier: Modifier = Modifier,
     viewModel: DiscoverViewModel,
     ) {
+
     Column(
         modifier = modifier
-            .fillMaxSize()
-            .padding(top = space16),
-        verticalArrangement = Arrangement.spacedBy(space16),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.Start
     ) {
         DiscoverAppBar(
-            modifier = modifier.padding(top = space16, bottom = space8))
+            modifier = modifier.padding(
+                top = space24, start = space16, end = space16, bottom = space8)
+        )
 
         SearchBar(
             icon = painterResource(id = R.drawable.icon_search),
             onClick = listener::onClickSearchBar,
-            modifier = modifier.padding(bottom = space16)
+            modifier = modifier.padding(horizontal = space16, vertical = space8)
         )
 
         LazyRow(
@@ -96,6 +85,7 @@ fun DiscoverContent(
             horizontalArrangement = Arrangement.spacedBy(space8),
             contentPadding = PaddingValues(space16)
         ) {
+
             item {
                 CustomChip(
                     isSelected = state.general(),
@@ -179,9 +169,10 @@ fun DiscoverContent(
         }
 
         BreakingNewsForDiscover(
-            modifier = modifier.padding(top = space16),
-            news = state.news,
-            onClickBreakingNewsCard = { listener.onClickNewsItem(newsItem = state.newsItem) }
+            modifier = modifier.padding(space16),
+            news = state.nonDeprecatedNews,
+            title = state.newsItem.title,
+            onClickBreakingNewsCard = { listener.onClickNewsItem(state.newsItem.title) },
         )
     }
 }

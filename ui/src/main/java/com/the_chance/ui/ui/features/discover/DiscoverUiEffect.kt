@@ -1,8 +1,8 @@
-package com.the_chance.newswave.ui.features.discover
+package com.the_chance.ui.ui.features.discover
 
 import com.the_chance.newswave.ui.base.BaseUiEffect
 
 sealed interface DiscoverUiEffect: BaseUiEffect {
-    data object NavigateToSearchScreenEffect: DiscoverUiEffect
-    data object NavigateToNewsDetailsEffect: DiscoverUiEffect
+    data object ClickSearchIconEffect: DiscoverUiEffect
+    data class ClickNewsItemEffect(val title: String): DiscoverUiEffect
 }

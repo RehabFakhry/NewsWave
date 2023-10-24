@@ -1,9 +1,9 @@
-package com.the_chance.newswave.ui.features.discover
+package com.the_chance.ui.ui.features.discover
 
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.usecase.GetAllNewsByCategoryUseCase
 import com.the_chance.domain.utill.ErrorHandler
-import com.the_chance.newswave.ui.base.BaseViewModel
+import com.the_chance.ui.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
@@ -11,8 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DiscoverViewModel @Inject constructor(
     private val getAllNewsByCategoryUseCase: GetAllNewsByCategoryUseCase
-    )
-    : BaseViewModel<DiscoverUiState, DiscoverUiEffect>(DiscoverUiState()),
+) : BaseViewModel<DiscoverUiState, DiscoverUiEffect>(DiscoverUiState()),
     DiscoverInteractionListener {
 
     override val TAG: String = this::class.java.simpleName
@@ -43,9 +42,12 @@ class DiscoverViewModel @Inject constructor(
     }
 
     private fun onGetAllNewsByCategoryError(errorHandler: ErrorHandler) {
-        _state.update { it.copy(isLoading = false, error = errorHandler) }
-        if (errorHandler is ErrorHandler.NoConnection){
-            _state.update { it.copy(isError = true) }
+        _state.update {
+            it.copy(
+                isLoading = false,
+                error = errorHandler,
+                isConnectionError = errorHandler is ErrorHandler.NoConnection
+            )
         }
     }
 
@@ -54,11 +56,10 @@ class DiscoverViewModel @Inject constructor(
     }
 
     override fun onClickSearchBar() {
-        effectActionExecutor(_effect, DiscoverUiEffect.NavigateToSearchScreenEffect)
+        effectActionExecutor(_effect, DiscoverUiEffect.ClickSearchIconEffect)
     }
 
-    override fun onClickNewsItem(newsItem: NewsArticleUiState) {
-//        effectActionExecutor(_effect, DiscoverUiEffect.NavigateToNewsDetailsEffect(newsItem))
+    override fun onClickNewsItem(title: String) {
+        effectActionExecutor(_effect, DiscoverUiEffect.ClickNewsItemEffect(title))
     }
-
 }
