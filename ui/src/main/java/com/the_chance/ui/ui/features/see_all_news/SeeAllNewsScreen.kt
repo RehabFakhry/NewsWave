@@ -61,7 +61,7 @@ fun SeeAllRecommendNewsContent(
     ) {
         item(span = { GridItemSpan(2) })
         {
-            RecommendedNews(currentNews = state.currentNews)
+            RecommendedNews(recommendedNews = state.currentNews)
         }
     }
 }
