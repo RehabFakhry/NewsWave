@@ -11,7 +11,9 @@ data class SearchUiState(
     val isConnectionError: Boolean = false,
     val searchQuery: String = "",
     val news: List<NewsUiState> = emptyList(),
-    )
+    ){
+    val newsNotNull = news.filter { !it.title.isNullOrEmpty() && !it.image.isNullOrEmpty() }
+}
 
 data class NewsUiState(
     val author: String = "",

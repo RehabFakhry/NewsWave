@@ -21,6 +21,7 @@ import com.the_chance.ui.ui.components.ImageNetwork
 import com.the_chance.ui.ui.theme.Shapes
 import com.the_chance.ui.ui.theme.space4
 import com.the_chance.ui.ui.theme.space8
+import com.the_chance.ui.ui.theme.white
 
 @Composable
 fun CardSearch(
@@ -53,14 +54,14 @@ fun CardSearch(
             Text(
                 text = newsTitle,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = white,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
             Text(
                 text = author,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = white,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

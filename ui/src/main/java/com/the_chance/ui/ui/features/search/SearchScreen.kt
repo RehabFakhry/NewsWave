@@ -65,6 +65,8 @@ fun SearchContent(
             onValueChange = onSearchTextChange
         )
 
+        Loading(state = state.isLoading && state.newsNotNull.isEmpty())
+        
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier
@@ -73,11 +75,11 @@ fun SearchContent(
             horizontalArrangement = Arrangement.spacedBy(space8),
             verticalArrangement = Arrangement.spacedBy(space16),
         ) {
-            item {
-                Loading( state.isLoading && state.news.isEmpty() )
-            }
-            items(state.news.size) { index ->
-                val news = state.news[index]
+//            item {
+//                Loading( state.isLoading && state.newsNotNull.isEmpty() )
+//            }
+            items(state.newsNotNull.size) { index ->
+                val news = state.newsNotNull[index]
                 CardSearch(
                     imageUrl = news.image,
                     newsTitle = news.title,
