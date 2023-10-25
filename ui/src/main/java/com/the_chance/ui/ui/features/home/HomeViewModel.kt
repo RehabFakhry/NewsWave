@@ -5,16 +5,17 @@ import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.usecase.GetAllNewsByDateUseCase
 import com.the_chance.domain.usecase.GetAllNewsUseCase
 import com.the_chance.domain.utill.ErrorHandler
-import com.the_chance.newswave.ui.base.BaseViewModel
+import com.the_chance.ui.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class NewsViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val getAllNewsUseCase: GetAllNewsUseCase,
     private val getAllNewsByDateUseCase: GetAllNewsByDateUseCase,
 ) : BaseViewModel<HomeUiState, HomeUiEffect>(HomeUiState()),
@@ -27,9 +28,11 @@ class NewsViewModel @Inject constructor(
     }
 
     override fun getAllNewsArticle() {
+        val currentDate = LocalDate.now() // Get the current date
         _state.update { it.copy(isLoading = true, isError = false) }
+
         tryToExecute(
-            { getAllNewsUseCase() },
+            { getAllNewsUseCase(currentDate) },
             ::onGetAllNewsSuccess,
             ::onGetAllNewsError
         )
@@ -64,42 +67,42 @@ class NewsViewModel @Inject constructor(
             _state.update {
                 it.copy(
                     isLoading = false,
-                    currentNews = currentNewsWithImage.map { newsArticle -> newsArticle.toNewsUiState() }
+                    currentNews = currentNewsWithImage
+                        .map { newsArticle -> newsArticle.toNewsUiState() }
                 )
             }
         }
     }
 
     private fun onGetAllNewsError(error: ErrorHandler) {
-        _state.update { it.copy(isLoading = false, error = error) }
-        if (error is ErrorHandler.NoConnection) {
-            _state.update { it.copy(isError = true) }
+        _state.update {
+            it.copy(
+                isLoading = false,
+                error = error,
+                isConnectionError = error is ErrorHandler.NoConnection
+            )
         }
     }
 
     private fun onGetAllNewsByDateError(error: ErrorHandler) {
-        _state.update { it.copy(isLoading = false, error = error) }
-        if (error is ErrorHandler.NoConnection) {
-            _state.update { it.copy(isError = true) }
+        _state.update {
+            it.copy(
+                isLoading = false,
+                error = error,
+                isConnectionError = error is ErrorHandler.NoConnection
+            )
         }
     }
 
     override fun onClickSearchIcon() {
-        effectActionExecutor(_effect, HomeUiEffect.NavigateToSearchScreenEffect)
+        effectActionExecutor(_effect, HomeUiEffect.OnClickSearchIconEffect)
     }
 
-    override fun onClickWorldNews() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onClickBreakingNews() {
-    }
-
-    override fun onClickRecommendedNews() {
-        TODO("Not yet implemented")
+    override fun onClickNewsCard() {
+        effectActionExecutor(_effect, HomeUiEffect.OnClickNewsCardEffect)
     }
 
     override fun onClickShowMore() {
-        effectActionExecutor(_effect, HomeUiEffect.NavigateToSeeAllNewsEffect)
+        effectActionExecutor(_effect, HomeUiEffect.OnClickSeeAllIconEffect)
     }
 }
