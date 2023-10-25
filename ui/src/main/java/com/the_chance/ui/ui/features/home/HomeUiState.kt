@@ -1,13 +1,11 @@
 package com.the_chance.ui.ui.features.home
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.the_chance.domain.model.NewsArticle
 import com.the_chance.domain.utill.ErrorHandler
-import com.the_chance.newswave.ui.features.discover.ChipSelectedState
 import com.the_chance.ui.R
+import com.the_chance.ui.ui.features.discover.ChipSelectedState
 import java.time.Duration
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 data class HomeUiState(
@@ -20,6 +18,12 @@ data class HomeUiState(
     val chipSelected: ChipSelectedState = ChipSelectedState.GENERAL
 ) {
     val shuffledNews = news.filter { !it.image.isNullOrEmpty() }.shuffled().take(3)
+    val newsNotNull = news.distinctBy { it.image }
+    val shuffledCurrentNews = currentNews.shuffled().take(6)
+    val randomNonDeprecatedNews = news
+        .distinctBy { it.author to it.title to it.image to it.category to it.publishedAt }
+        .filter { !it.author.isNullOrEmpty() && !it.image.isNullOrEmpty() }
+        .shuffled().take(5)
 }
 
 data class NewsUiState(
@@ -30,7 +34,6 @@ data class NewsUiState(
     val source: String = "",
     val image: String = "",
     val category: String = "",
-    val language: String = "",
     val country: String = "",
     val publishedAt: String = "",
 )
@@ -44,9 +47,8 @@ fun NewsArticle.toNewsUiState(): NewsUiState {
         source = source ?: "",
         image = image ?: "",
         category = category ?: "",
-        language = language ?: "",
         country = country ?: "",
-        publishedAt = publishedAt ?: "",
+        publishedAt = publishedAt?.formatPublishedDate() ?: "",
     )
 }
 
@@ -61,20 +63,30 @@ val worldNewsImages: List<Int> = listOf(
     R.drawable.italy_flag,
     R.drawable.morocco_flag,
     R.drawable.hong_kong_flag,
-    )
+)
 
 fun HomeUiState.showHome() = news.isNotEmpty() && currentNews.isNotEmpty()
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun String.formatPublishedDate(): String {
-    val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
-    val publishedDateTime = LocalDateTime.parse(this, dateFormatter)
-    val now = LocalDateTime.now()
+    val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
+    val publishedDateTime = ZonedDateTime.parse(this, dateFormatter)
+    val now = ZonedDateTime.now()
     val daysAgo = Duration.between(publishedDateTime, now).toDays()
 
     return when {
         daysAgo < 1 -> "Today"
         daysAgo == 1L -> "Yesterday"
-        else -> "$daysAgo days ago"
+        daysAgo < 7 -> "$daysAgo day${if (daysAgo > 1) "s" else ""} ago"
+        daysAgo < 14 -> "1 week ago"
+        daysAgo < 21 -> "2 weeks ago"
+        daysAgo < 28 -> "3 weeks ago"
+        daysAgo < 30 -> "4 weeks ago"
+        else -> {
+            val monthsAgo = (daysAgo / 30).toInt()
+            if (monthsAgo == 1)
+                " 1 month ago"
+            else
+                "$monthsAgo months ago"
+        }
     }
 }
