@@ -21,20 +21,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.the_chance.ui.R
 import com.the_chance.ui.ui.theme.NewsWaveTheme
 import com.the_chance.ui.ui.theme.space16
 import com.the_chance.ui.ui.theme.space56
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun EmptySearchPlaceholder(
-    state: Boolean,
-    title: String,
-    subtitle: String,
-    image: Int,
-){
+fun EmptySearchPlaceholder(state: Boolean){
     NewsWaveTheme {
         AnimatedVisibility(
             visible = state,
@@ -49,33 +46,31 @@ fun EmptySearchPlaceholder(
                 verticalArrangement = Arrangement.Center
             ) {
                 Image(
-                    painter = painterResource(id = image),
-                    contentDescription = "No Search Result",
+                    painter = painterResource(id = R.drawable.no_result_placeholder),
+                    contentDescription = stringResource(R.string.no_search_result),
                     contentScale = ContentScale.Crop
                 )
                 Text(
-                    modifier = Modifier.padding(top = space56),
-                    text = title,
+                    text = stringResource(R.string.there_is_no_result),
                     style = MaterialTheme.typography.displayMedium,
                     color = MaterialTheme.colorScheme.onBackground,
-                    textAlign = TextAlign.Center
-                )
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(top = space56),
+                    )
                 Text(
-                    text = subtitle,
-                    modifier = Modifier.padding(top = space16),
+                    text = stringResource(R.string.please_try_again_with_another_words),
                     style = MaterialTheme.typography.displayLarge,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                     textAlign = TextAlign.Center,
-                )
+                    modifier = Modifier.padding(top = space16),
+                    )
             }
         }
-
     }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewEmptyProductsScaffold(){
-    EmptySearchPlaceholder(
-        true, "there is no result" , "Please try again with another words", 10 )
+    EmptySearchPlaceholder(true)
 }

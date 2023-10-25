@@ -24,22 +24,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.the_chance.newswave.ui.components.modifier.fullOverlay
+import com.the_chance.ui.R
 import com.the_chance.ui.ui.features.home.NewsUiState
 import com.the_chance.ui.ui.theme.fontSize14
 import com.the_chance.ui.ui.theme.space16
 import com.the_chance.ui.ui.theme.space4
 import com.the_chance.ui.ui.theme.space6
 import com.the_chance.ui.ui.theme.space8
-import com.the_chance.ui.R
 
 @Composable
 fun RecommendedNews(
-    currentNews: List<NewsUiState>,
+    recommendedNews: List<NewsUiState>,
     onClickRecommendedNewsCard: () -> Unit = {},
     onClickShowMore: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
-    val limitedNews = currentNews.take(5)
+    val limitedNews = recommendedNews.take(5)
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space8),
@@ -84,7 +84,7 @@ fun RecommendedNewsCard(
             .width(160.dp)
             .height(184.dp)
             .clip(RoundedCornerShape(topStart = space8, topEnd = space8))
-            .clickable { onClickRecommendedNewsCard }
+            .clickable { onClickRecommendedNewsCard() }
     ) {
         ImageNetwork(
             imageUrl = newsImage,

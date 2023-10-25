@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,30 +25,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.the_chance.newswave.ui.components.modifier.overlayBottomToTop
-import com.the_chance.newswave.ui.features.discover.NewsArticleUiState
+import com.the_chance.ui.R
+import com.the_chance.ui.ui.features.discover.NewsArticleUiState
 import com.the_chance.ui.ui.features.home.NewsUiState
 import com.the_chance.ui.ui.theme.Shapes
 import com.the_chance.ui.ui.theme.space12
 import com.the_chance.ui.ui.theme.space16
-import com.the_chance.ui.ui.theme.space2
 import com.the_chance.ui.ui.theme.space4
 import com.the_chance.ui.ui.theme.space8
 import com.the_chance.ui.ui.theme.white
-import com.the_chance.ui.R
-
 
 @SuppressLint("ModifierParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BreakingNews(
     news: List<NewsUiState>,
-    onClickBreakingNewsCard: () -> Unit = {},
-    onClickShowMore: () -> Unit = {},
+    onClickBreakingNewsCard: () -> Unit,
+    onClickShowMore: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val limitedNews = news.take(6)
@@ -82,17 +80,17 @@ fun BreakingNews(
 @Composable
 fun BreakingNewsForDiscover(
     news: List<NewsArticleUiState>,
-    onClickBreakingNewsCard: () -> Unit = {},
+    title: String,
+    onClickBreakingNewsCard: (title: String) -> Unit,
     modifier: Modifier = Modifier,
-    ) {
-    val limitedNews = news.take(5)
+) {
+    val limitedNews = news.distinct().take(5)
 
     LazyVerticalGrid(
         modifier = modifier
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(space8),
-        verticalArrangement = Arrangement.spacedBy(space8),
-        contentPadding = PaddingValues(bottom = space16),
+        verticalArrangement = Arrangement.spacedBy(space12),
         columns = GridCells.Fixed(2)
     ) {
         items(items = limitedNews) { news ->
@@ -101,7 +99,7 @@ fun BreakingNewsForDiscover(
                 imageNewsUrl = news.image,
                 title = news.title,
                 country = news.country,
-                onClickNewsCard = onClickBreakingNewsCard
+                onClickNewsCard = { onClickBreakingNewsCard(title) }
             )
         }
     }
@@ -119,8 +117,8 @@ fun BreakingNewsCard(
         modifier = Modifier
             .width(150.dp)
             .height(140.dp)
-            .clip(shape = RoundedCornerShape(space12))
-            .clickable { onClickNewsCard },
+            .clickable { onClickNewsCard() }
+            .clip(shape = RoundedCornerShape(space12)),
         contentAlignment = Alignment.BottomStart
     ) {
         ImageNetwork(
@@ -148,16 +146,16 @@ fun BreakingNewsCard(
 fun BreakingNewsDiscover(
     imageNewsUrl: String,
     title: String,
-    country: String ,
-    onClickNewsCard: () -> Unit,
+    country: String,
+    onClickNewsCard: (title : String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = Modifier
             .width(160.dp)
-            .height(240.dp)
+            .height(220.dp)
             .clip(shape = RoundedCornerShape(space8))
-            .clickable { onClickNewsCard },
+            .clickable { onClickNewsCard(title) },
     ) {
         ImageNetwork(
             imageUrl = imageNewsUrl,
@@ -170,9 +168,7 @@ fun BreakingNewsDiscover(
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal = space8)
                 .align(Alignment.BottomStart),
-            verticalArrangement = Arrangement.spacedBy(space2)
         ) {
             Text(
                 text = title,
@@ -180,22 +176,21 @@ fun BreakingNewsDiscover(
                 color = white,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                modifier = modifier
             )
             Row(
                 horizontalArrangement = Arrangement.spacedBy(space4),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Bottom
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.icon_location),
-                    contentDescription = stringResource(R.string.location_icon)
+                    contentDescription = stringResource(R.string.location_icon),
+                    tint = Color.White,
                 )
                 Text(
                     text = country,
                     style = MaterialTheme.typography.displaySmall,
                     color = white,
                     overflow = TextOverflow.Visible,
-                    modifier = modifier.padding(bottom = space16)
                 )
             }
         }

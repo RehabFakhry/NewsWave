@@ -29,8 +29,7 @@ fun NewsAppBar(
     startIcon: Int,
     title: String,
     endIcon: Int = 0,
-    onStartIconClick: (() -> Unit)? = null,
-    onEndIconClick: (() -> Unit)? = null
+    onSearchIconClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -54,23 +53,19 @@ fun NewsAppBar(
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
         )
-
-        if (endIcon != 0) {
-            if (onEndIconClick != null) {
-                IconButton(
-                    modifier = Modifier
-                        .size(icon32).padding(end = space4),
-                    onClick = onEndIconClick
-                ) {
-                    Icon(
-                        painter = painterResource(id = endIcon),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.outlineVariant,
-                        modifier = Modifier
-                            .fillMaxSize()
-                    )
-                }
-            }
+        IconButton(
+            modifier = Modifier
+                .size(icon32)
+                .padding(end = space4),
+            onClick = onSearchIconClick
+        ) {
+            Icon(
+                painter = painterResource(id = endIcon),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.outlineVariant,
+                modifier = Modifier
+                    .fillMaxSize()
+            )
         }
     }
 }

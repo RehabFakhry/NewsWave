@@ -16,8 +16,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.the_chance.ui.ui.theme.space8
 import com.the_chance.ui.R
+import com.the_chance.ui.ui.theme.space8
 
 @Composable
 fun WorldNews(
@@ -41,7 +41,8 @@ fun WorldNews(
             items(items = limitedNews) { worldNews ->
                 WorldNewsCard(
                     images = worldNews,
-                    onClickWorldNewsCard = onClickWorldNews
+                    modifier = modifier.clickable { onClickWorldNews() }
+//                    onClickWorldNewsCard = onClickWorldNews
                 )
             }
         }
@@ -53,14 +54,14 @@ fun WorldNews(
 fun WorldNewsCard(
     images: Int,
     contentDescription: String = "",
-    onClickWorldNewsCard: () -> Unit,
+//    onClickWorldNewsCard: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         shape = CircleShape,
         modifier = modifier
-            .size(77.dp)
-            .clickable { onClickWorldNewsCard },
+            .size(75.dp)
+//            .clickable { onClickWorldNewsCard },
     ) {
         Image(
             painter = painterResource(id = images),
