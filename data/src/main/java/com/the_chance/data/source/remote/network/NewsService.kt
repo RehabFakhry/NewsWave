@@ -7,6 +7,9 @@ import retrofit2.http.Query
 
 interface NewsService {
     @GET("news")
+    suspend fun getNewsArticle(@Query("date") dateRange: String): Response<NewsDto>
+
+    @GET("news")
     suspend fun getNewsArticle(): Response<NewsDto>
 
     @GET("news")

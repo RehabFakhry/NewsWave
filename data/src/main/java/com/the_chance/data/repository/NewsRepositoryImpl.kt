@@ -9,8 +9,8 @@ import javax.inject.Inject
 class NewsRepositoryImpl @Inject constructor(
     private val newsService: NewsService
 ) : BaseRepository(), NewsRepository {
-    override suspend fun getAllNews(): List<NewsArticle> {
-        return (wrap { newsService.getNewsArticle() }.data.map { it.toNewsArticle() })
+    override suspend fun getAllNews(dateRange: String): List<NewsArticle> {
+        return (wrap { newsService.getNewsArticle(dateRange) }.data.map { it.toNewsArticle() })
     }
 
     override suspend fun getAllNewsByDate(date: String): List<NewsArticle> {
